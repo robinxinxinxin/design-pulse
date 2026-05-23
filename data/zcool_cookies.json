@@ -1,0 +1,24 @@
+import json
+import os
+
+# 这个脚本需要从浏览器的开发者工具中手动导出 cookies
+# 或者我们可以使用 Playwright 的 browser_context.cookies()
+
+print("""
+获取站酷 Cookie 的方法：
+
+方法1 - 手动导出（推荐）：
+1. 在浏览器中按 F12 打开开发者工具
+2. 切换到 "Application" 或 "应用程序" 标签
+3. 左侧找到 "Cookies" -> "https://www.zcool.com.cn"
+4. 找到关键 cookie（如 zcool_token, SESSIONID 等）
+5. 复制 Name 和 Value
+
+方法2 - 使用控制台：
+1. 按 F12 打开控制台
+2. 输入: document.cookie
+3. 复制输出的完整字符串
+
+请将获取到的 cookie 粘贴到这里，格式如下：
+{"name": "value", "name2": "value2", ...}
+""")

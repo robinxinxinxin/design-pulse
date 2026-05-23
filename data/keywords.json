@@ -1,0 +1,47 @@
+{
+  "zcool": {
+    "search_keywords": [
+      "产品渲染",
+      "产品效果图",
+      "工业设计渲染",
+      "3D渲染",
+      "Keyshot",
+      "消费电子",
+      "智能硬件",
+      "产品设计"
+    ],
+    "category_keywords": {
+      "include": [
+        "手机", "平板", "笔记本", "耳机", "音箱", "智能手表", "充电器", "数据线", "移动电源",
+        "摄像头", "键盘", "鼠标", "显示器", "路由器", "智能家居", "机器人", "无人机",
+        "AR设备", "VR设备", "智能音箱", "投影仪", "游戏手柄", "充电宝", "蓝牙耳机",
+        "智能手环", "平板电脑", "笔记本电脑", "机械键盘", "无线鼠标", "显示器支架",
+        "智能门锁", "扫地机器人", "空气净化器", "加湿器", "台灯", "插座", "转换器"
+      ],
+      "exclude": [
+        "UI设计", "APP设计", "网页设计", "包装设计", "海报设计", "品牌VI", "广告设计",
+        "建筑设计", "室内设计", "服装设计", "插画", "平面设计", "字体设计", "Logo设计",
+        "电商设计", "运营设计", "H5设计", "小程序设计", "后台设计", "数据可视化"
+      ]
+    }
+  },
+  "behance": {
+    "category_keywords": {
+      "include": [
+        "phone", "tablet", "laptop", "headphone", "speaker", "smartwatch", "charger",
+        "cable", "power bank", "camera", "keyboard", "mouse", "monitor", "router",
+        "smart home", "robot", "drone", "AR", "VR", "smart speaker", "projector",
+        "game controller", "earbuds", "smart band", "tablet PC", "notebook",
+        "mechanical keyboard", "wireless mouse", "monitor stand", "smart lock",
+        "robot vacuum", "air purifier", "humidifier", "desk lamp", "socket",
+        "converter", "consumer electronics", "product design", "industrial design"
+      ],
+      "exclude": [
+        "UI design", "UX design", "app design", "web design", "packaging design",
+        "poster design", "branding", "advertising", "architecture", "interior design",
+        "fashion design", "illustration", "graphic design", "typography", "logo design",
+        "e-commerce", "marketing design", "H5", "dashboard", "data visualization"
+      ]
+    }
+  }
+}

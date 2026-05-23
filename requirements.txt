@@ -1,0 +1,23 @@
+# Web scraping
+playwright>=1.40.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Database
+sqlalchemy>=2.0.0
+alembic>=1.12.0
+
+# Web framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# Scheduler
+apscheduler>=3.10.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+python-dateutil>=2.8.0
+
+# Frontend (optional, for dashboard build)
+# These are Node.js dependencies, not Python
