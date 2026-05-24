@@ -1,11 +1,6 @@
 {
   "companies": [
     {
-      "name": "品拉索设计",
-      "profile_url": "https://www.behance.net/pinsuo",
-      "notes": "深圳市品拉索产品策划有限公司，连续3年十佳工业设计公司"
-    },
-    {
       "name": "佳简几何",
       "profile_url": "https://www.behance.net/jianji",
       "notes": "深圳市佳简几何工业设计有限公司，专注品牌定位与全案设计"
@@ -16,39 +11,19 @@
       "notes": "深圳市设际邹工业设计有限公司，聚焦消费电子、智能硬件"
     },
     {
-      "name": "木马设计",
-      "profile_url": "https://www.behance.net/muma",
-      "notes": "深圳市木马整合设计有限公司，2002年创立，60+国际奖项"
-    },
-    {
-      "name": "韵博设计",
-      "profile_url": "https://www.behance.net/yunbo",
-      "notes": "深圳市韵博工业设计有限公司，专注工业设计及相关服务"
-    },
-    {
-      "name": "东象设计",
-      "profile_url": "https://www.behance.net/dongxiang",
-      "notes": "深圳市东象设计有限公司，2022年十佳工业设计公司"
-    },
-    {
-      "name": "一毫米设计",
-      "profile_url": "https://www.behance.net/yihaomi",
-      "notes": "深圳市一毫米产品设计有限公司，IF/Reddot/IDEA/G-Mark获奖"
-    },
-    {
       "name": "白狐设计",
       "profile_url": "https://www.behance.net/baihu",
       "notes": "深圳市白狐工业设计有限公司，国家高新技术企业"
     },
     {
-      "name": "上善设计",
-      "profile_url": "https://www.behance.net/shangshan",
-      "notes": "深圳市上善工业设计有限公司，善设计理念"
+      "name": "后浪设计",
+      "profile_url": "https://www.behance.net/houlang",
+      "notes": "后浪设计"
     },
     {
-      "name": "叁目计研",
-      "profile_url": "https://www.behance.net/sanmu",
-      "notes": "深圳市叁目计研产品策划有限公司，红点/IF/红星奖"
+      "name": "有度设计 dooo design",
+      "profile_url": "https://www.puxiang.com/u4053531/gallery",
+      "notes": "有度设计"
     }
   ],
   "individuals": [
