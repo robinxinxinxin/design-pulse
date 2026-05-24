@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* === BrandPulse Design System === */
         :root {
             --bg-primary: #0f1419;
             --bg-secondary: #1a1f2e;
@@ -28,17 +27,15 @@
             --accent-orange: #f97316;
             --border-color: rgba(255,255,255,0.06);
             --border-hover: rgba(255,255,255,0.1);
+            --sidebar-w: 240px;
             --font-body: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             --transition: 0.2s ease;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
         :focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
-
         body {
             font-family: var(--font-body);
             background: var(--bg-primary);
@@ -48,21 +45,26 @@
             min-height: 100vh;
         }
 
-        /* === HEADER === */
-        .header {
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            position: fixed;
+            left: 0; top: 0;
+            width: var(--sidebar-w);
+            height: 100vh;
             background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1.25rem 2rem;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            z-index: 200;
+            transition: transform 0.3s ease;
+        }
+        .sidebar-header {
+            padding: 1.25rem 1.25rem 1rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
         }
-
-        .header-left { display: flex; align-items: center; gap: 1rem; }
         .logo {
             width: 36px; height: 36px;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-cyan-dark));
@@ -70,205 +72,277 @@
             display: flex; align-items: center; justify-content: center;
             font-weight: 700; font-size: 13px;
             color: var(--bg-primary);
-            letter-spacing: -0.5px;
+            flex-shrink: 0;
         }
-        .header h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.3px; }
-        .header h1 span { color: var(--text-muted); font-weight: 400; margin-left: 0.5rem; font-size: 0.85rem; }
-        .header-right { display: flex; align-items: center; gap: 0.75rem; }
-        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-        .last-update { font-size: 0.8rem; color: var(--text-muted); }
+        .sidebar-header h1 { font-size: 1.1rem; font-weight: 700; }
+        .sidebar-header h1 span { display: block; font-size: 0.72rem; color: var(--text-muted); font-weight: 400; margin-top: 1px; }
 
-        /* === LAYOUT === */
-        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
-
-        /* === FILTER BAR === */
-        .filter-bar {
+        /* Nav */
+        .sidebar-nav { padding: 0.75rem 0; flex: 1; overflow-y: auto; }
+        .nav-section-title {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .nav-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .filter-tab {
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            gap: 0.65rem;
+            padding: 0.55rem 1.25rem;
+            cursor: pointer;
+            color: var(--text-secondary);
             font-size: 0.88rem;
             font-weight: 500;
-            cursor: pointer;
-            border: 1px solid transparent;
-            background: transparent;
-            color: var(--text-secondary);
             transition: var(--transition);
-        }
-
-        .filter-tab:hover { color: var(--text-primary); background: var(--bg-card); }
-        .filter-tab.active { color: var(--accent-cyan); background: rgba(34, 211, 238, 0.1); border-color: rgba(34, 211, 238, 0.3); }
-
-        .filter-spacer { flex: 1; }
-
-        .search-box {
-            position: relative;
-            min-width: 200px;
-            max-width: 280px;
-        }
-
-        .search-box svg {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            pointer-events: none;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 0.5rem 0.75rem 0.5rem 2.25rem;
-            background: var(--bg-input);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 0.85rem;
-            font-family: var(--font-body);
-            transition: var(--transition);
-            outline: none;
-        }
-
-        .search-box input::placeholder { color: var(--text-muted); }
-        .search-box input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15); }
-
-        /* === TIMELINE === */
-        .timeline { position: relative; }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 60px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border-color);
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 1.25rem;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .timeline-time {
-            width: 60px;
-            flex-shrink: 0;
-            text-align: right;
-            padding-right: 1.25rem;
-            position: relative;
-        }
-
-        .timeline-time::after {
-            content: '';
-            position: absolute;
-            right: -5px;
-            top: 6px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--border-hover);
-            border: 2px solid var(--bg-primary);
-        }
-
-        .timeline-item.new .timeline-time::after {
-            background: var(--accent-cyan);
-            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
-        }
-
-        .time-date { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
-        .time-day { font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; }
-
-        .timeline-content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* === CARD === */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid transparent;
-            border-radius: 12px;
-            padding: 16px 20px;
-            transition: all 0.2s;
-            cursor: pointer;
+            border-left: 3px solid transparent;
             text-decoration: none;
-            color: inherit;
-            display: block;
+        }
+        .nav-item:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); }
+        .nav-item.active {
+            color: var(--accent-cyan);
+            background: rgba(34, 211, 238, 0.06);
+            border-left-color: var(--accent-cyan);
+        }
+        .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+        .nav-badge {
+            margin-left: auto;
+            background: rgba(34, 211, 238, 0.15);
+            color: var(--accent-cyan);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.1rem 0.45rem;
+            border-radius: 10px;
         }
 
-        .card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-1px);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 0.6rem;
-        }
-
-        .card-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+        /* Designer list in sidebar */
+        .designer-list { padding: 0 0.5rem; }
+        .designer-list-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 12px;
+            gap: 0.6rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+        }
+        .designer-list-item:hover { background: rgba(255,255,255,0.04); color: var(--text-primary); }
+        .designer-list-avatar {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 10px;
             color: var(--bg-primary);
             flex-shrink: 0;
         }
-
-        /* BrandPulse 头像渐变色 */
         .avatar-c0 { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
         .avatar-c1 { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
         .avatar-c2 { background: linear-gradient(135deg, #55efc4, #00b894); }
         .avatar-c3 { background: linear-gradient(135deg, #fdcb6e, #f39c12); }
         .avatar-c4 { background: linear-gradient(135deg, #74b9ff, #0984e3); }
         .avatar-c5 { background: linear-gradient(135deg, #fd79a8, #e84393); }
-
-        .card-meta {
+        .designer-list-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             flex: 1;
-            min-width: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        }
+        .platform-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .platform-dot.puxiang { background: var(--accent-green); }
+        .platform-dot.behance { background: var(--accent-blue); }
+        .platform-dot.zcool { background: var(--accent-red); }
+
+        .sidebar-footer {
+            padding: 1rem 1.25rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .sidebar-footer .update-dot {
+            display: inline-block;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            margin-right: 0.4rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            margin-left: var(--sidebar-w);
+            min-height: 100vh;
         }
 
-        .card-author { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); }
+        /* Top bar */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 20, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.85rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .topbar-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .topbar-count {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-left: 0.25rem;
+        }
+        .topbar-spacer { flex: 1; }
+        .topbar-search {
+            position: relative;
+        }
+        .topbar-search svg {
+            position: absolute;
+            left: 10px; top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+        .topbar-search input {
+            padding: 0.45rem 0.75rem 0.45rem 2rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.82rem;
+            font-family: var(--font-body);
+            outline: none;
+            width: 220px;
+            transition: var(--transition);
+        }
+        .topbar-search input::placeholder { color: var(--text-muted); }
+        .topbar-search input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15); }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none; border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+        .mobile-menu-btn svg { width: 22px; height: 22px; }
+
+        /* ========== TIMELINE ========== */
+        .content-area { padding: 1.5rem 2rem 3rem; }
+        .timeline { position: relative; padding-left: 80px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 23px; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        /* Date group header */
+        .date-group { margin-bottom: 2rem; }
+        .date-label {
+            position: absolute;
+            left: -80px; top: 4px;
+            width: 56px;
+            text-align: right;
+        }
+        .date-label .dl-date { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); }
+        .date-label .dl-day { font-size: 0.68rem; color: var(--text-muted); }
+
+        /* Timeline dot */
+        .timeline-dot {
+            position: absolute;
+            left: -63px; top: 8px;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--border-hover);
+            border: 2px solid var(--bg-primary);
+        }
+        .timeline-dot.new {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
+        }
+
+        /* Card */
+        .card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid transparent;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 160px;
+            background: var(--bg-input);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .card-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .card:hover .card-image img { transform: scale(1.02); }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 0.5rem;
+        }
+        .card-avatar {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 12px;
+            color: var(--bg-primary);
+            flex-shrink: 0;
+        }
+        .card-author { font-size: 0.85rem; font-weight: 600; }
         .card-platform {
             padding: 0.1rem 0.4rem;
             border-radius: 4px;
             font-size: 0.65rem;
             font-weight: 500;
-            text-transform: uppercase;
         }
-        .platform-zcool { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
         .platform-puxiang { background: rgba(34, 197, 94, 0.15); color: var(--accent-green); }
         .platform-behance { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+        .platform-zcool { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
 
         .card-title {
             font-size: 0.95rem;
             font-weight: 500;
-            color: var(--text-primary);
             line-height: 1.5;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
-
         .card-desc {
             font-size: 0.82rem;
             color: var(--text-secondary);
@@ -278,137 +352,164 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-
         .card-footer {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
+            margin-top: 0.65rem;
+            padding-top: 0.65rem;
             border-top: 1px solid var(--border-color);
         }
-
-        .card-tag {
+        .card-type {
             font-size: 0.75rem;
             color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
+            display: flex; align-items: center; gap: 0.3rem;
         }
-
-        .card-tag svg { width: 14px; height: 14px; }
-
+        .card-type svg { width: 14px; height: 14px; }
         .card-link {
             margin-left: auto;
             font-size: 0.8rem;
             color: var(--accent-cyan);
-            display: flex;
-            align-items: center;
-            gap: 0.2rem;
+            display: flex; align-items: center; gap: 0.2rem;
         }
-
         .card:hover .card-link { color: #67e8f9; }
 
-        /* === WEEK SECTION === */
-        .week-section { margin-bottom: 2rem; }
-        .week-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            padding-left: 84px;
-        }
-
-        .week-badge {
-            padding: 0.35rem 0.75rem;
-            background: rgba(34, 211, 238, 0.1);
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
-        }
-
-        .week-count {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* === EMPTY STATE === */
+        /* Empty state */
         .empty-state {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             color: var(--text-muted);
         }
-        .empty-state svg { width: 48px; height: 48px; margin-bottom: 1rem; opacity: 0.3; }
-        .empty-state p { font-size: 0.95rem; }
+        .empty-icon {
+            width: 64px; height: 64px;
+            margin: 0 auto 1.25rem;
+            border-radius: 50%;
+            background: var(--bg-card);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .empty-icon svg { width: 28px; height: 28px; opacity: 0.4; }
+        .empty-state .empty-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.4rem; }
+        .empty-state .empty-desc { font-size: 0.82rem; }
 
-        /* === FOOTER === */
-        .footer {
-            margin-top: 3rem;
-            padding: 2rem 0;
+        /* Footer stats */
+        .footer-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2rem;
             border-top: 1px solid var(--border-color);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
+            margin-top: 2rem;
         }
-        .footer a { color: var(--accent-cyan); text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
+        .footer-stat { text-align: center; }
+        .footer-stat-num { font-size: 1.25rem; font-weight: 700; color: var(--accent-cyan); }
+        .footer-stat-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.15rem; }
 
-        /* === RESPONSIVE === */
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .mobile-menu-btn { display: block; }
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.5);
+                z-index: 150;
+            }
+            .sidebar-overlay.open { display: block; }
+        }
         @media (max-width: 768px) {
-            .container { padding: 1rem; }
-            .header { padding: 1rem; }
-            .header h1 span { display: none; }
-            .filter-bar { gap: 0.5rem; }
-            .search-box { max-width: none; flex-basis: 100%; order: -1; margin-bottom: 0.5rem; }
-            .timeline::before { left: 50px; }
-            .timeline-time { width: 50px; padding-right: 1rem; }
-            .week-header { padding-left: 74px; }
+            .content-area { padding: 1rem; }
+            .topbar { padding: 0.75rem 1rem; }
+            .topbar-search { width: 160px; }
+            .timeline { padding-left: 60px; }
+            .date-label { left: -60px; width: 42px; }
+            .timeline-dot { left: -43px; }
             .card { padding: 14px 16px; }
+            .card-image { height: 120px; }
+            .footer-stats { gap: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-left">
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
             <div class="logo">DP</div>
             <h1>Design Pulse <span>设计前沿监测</span></h1>
         </div>
-        <div class="header-right">
-            <div class="status-dot"></div>
-            <span class="last-update">每周一更新</span>
-        </div>
-    </header>
 
-    <div class="container">
-        <!-- Filter Bar -->
-        <div class="filter-bar">
-            <button class="filter-tab active" data-filter="all">全部动态</button>
-            <button class="filter-tab" data-filter="this-week">本周更新</button>
-            <button class="filter-tab" data-filter="puxiang">普象</button>
-            <button class="filter-tab" data-filter="behance">Behance</button>
-            <div class="filter-spacer"></div>
-            <div class="search-box">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                <input type="text" id="search-input" placeholder="搜索设计师/作品..." />
+        <nav class="sidebar-nav">
+            <div class="nav-section-title">视图</div>
+            <a class="nav-item active" data-view="featured" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                精选
+                <span class="nav-badge" id="new-count-badge"></span>
+            </a>
+            <a class="nav-item" data-view="all" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                全部动态
+            </a>
+
+            <div class="nav-section-title" style="margin-top: 0.75rem;">监测设计师 (<span id="sidebar-count">0</span>)</div>
+            <div class="designer-list" id="designerList">
+                <!-- Rendered by JS -->
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="update-dot"></span>
+            <span id="last-update-text">每周一自动更新</span>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="topbar">
+            <button class="mobile-menu-btn" id="menuBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <span class="topbar-title" id="topbar-title">本周精选</span>
+            <span class="topbar-count" id="topbar-count"></span>
+            <div class="topbar-spacer"></div>
+            <div class="topbar-search">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input type="text" id="search-input" placeholder="搜索作品..." />
             </div>
         </div>
 
-        <!-- Timeline -->
-        <div class="timeline" id="timeline">
-            <!-- Content will be rendered by JavaScript -->
-        </div>
+        <div class="content-area">
+            <div id="mainContent">
+                <!-- Rendered by JS -->
+            </div>
 
-        <!-- Footer -->
-        <div class="footer">
-            <p>Design Pulse — 持续追踪全球优秀产品设计师</p>
-            <p style="margin-top: 0.5rem;">监测 <span id="footer-count">0</span> 位设计师 · <a href="https://github.com/robinxinxinxin/design-pulse" target="_blank">GitHub</a></p>
+            <div class="footer-stats">
+                <div class="footer-stat">
+                    <div class="footer-stat-num" id="stat-total">0</div>
+                    <div class="footer-stat-label">监测设计师</div>
+                </div>
+                <div class="footer-stat">
+                    <div class="footer-stat-num" id="stat-puxiang">0</div>
+                    <div class="footer-stat-label">普象</div>
+                </div>
+                <div class="footer-stat">
+                    <div class="footer-stat-num" id="stat-behance">0</div>
+                    <div class="footer-stat-label">Behance</div>
+                </div>
+                <div class="footer-stat">
+                    <div class="footer-stat-num" id="stat-week">0</div>
+                    <div class="footer-stat-label">本周更新</div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 
     <script>
-        // 设计师数据
+        // ==================== DATA ====================
         const designersData = {
             companies: [
                 { name: "佳简几何", profile_url: "https://www.puxiang.com/xivodesign/gallery", notes: "深圳市佳简几何工业设计有限公司，专注品牌定位与全案设计", platform: "puxiang" },
@@ -416,265 +517,274 @@
                 { name: "后浪设计", profile_url: "https://www.puxiang.com/houlangdesign/gallery", notes: "深圳市后浪工业设计有限公司", platform: "puxiang" },
                 { name: "有度设计 dooo design", profile_url: "https://www.puxiang.com/u4053531/gallery", notes: "有度设计", platform: "puxiang" },
                 { name: "D MOOSTER", profile_url: "https://www.puxiang.com/dmooster/gallery", notes: "杭州大怪兽科技有限公司，潮牌风格，专注蓝牙耳机、3C产品，2024年产出百余款设计", platform: "puxiang" },
-                { name: "所思设计", profile_url: "https://www.puxiang.com/suosidesign/gallery", notes: "所思（深圳）设计有限公司，专注医疗器械、智能宠物、3C产品，TOP榜银奖获得者，代表作Hypershell行走外骨骼", platform: "puxiang" },
-                { name: "凸凹设计 TOALL", profile_url: "https://www.puxiang.com/toalldesign/gallery", notes: "杭州凸凹工业设计有限公司，专注智能化产品设计、家电、机器人，TOP榜银奖/铜奖获得者，代表作AI陪伴机器人、远程替身机器人", platform: "puxiang" }
+                { name: "所思设计", profile_url: "https://www.puxiang.com/suosidesign/gallery", notes: "所思（深圳）设计有限公司，专注医疗器械、智能宠物、3C产品，TOP榜银奖获得者", platform: "puxiang" },
+                { name: "凸凹设计 TOALL", profile_url: "https://www.puxiang.com/toalldesign/gallery", notes: "杭州凸凹工业设计有限公司，专注智能化产品设计、家电、机器人，TOP榜银奖/铜奖获得者", platform: "puxiang" }
             ],
             individuals: [
                 { name: "Behance 产品设计精选", profile_url: "https://www.behance.net/galleries/product-design", notes: "Behance 产品设计画廊，发现全球优秀个人设计师", platform: "behance" },
-                { name: "厂长", profile_url: "https://www.puxiang.com/u100483/gallery", notes: "超级单体设计师，579粉丝，人气9.8万+，TOP榜铜奖(第170期)，专注智能灌溉、美容仪、手持分析仪等消费电子产品", platform: "puxiang" },
-                { name: "Vitaliy Tarasov", profile_url: "https://www.behance.net/VitaliyTarasov", notes: "工业设计师/艺术总监，塞浦路斯尼科西亚，Evapolar系列(evaPURE/evaWAVE/evaCHILL)，Yanko Design收录", platform: "behance" },
-                { name: "Kenji Abe", profile_url: "https://www.behance.net/kenjiabe", notes: "产品设计师，东京，代表作ECHO/LACUNA/APERIRE，涉足工业设计/家具/展览，个人网站kenjiabe.com", platform: "behance" },
-                { name: "Hyeonggyun Han", profile_url: "https://www.behance.net/hyeonggyunhan", notes: "工业设计师，韩国，代表作Hound/PLA/GeoShift，专注消费电子产品概念设计", platform: "behance" },
-                { name: "Rand Nassar", profile_url: "https://www.behance.net/rand_nassar", notes: "产品设计师，约旦，代表作MYLO盲文胰岛素笔/SCOPE远程医疗设备/DECIBEL噪音监测，专注医疗健康产品设计", platform: "behance" },
-                { name: "Sébastien Gobert", profile_url: "https://www.behance.net/sebastiengobert", notes: "创意总监，瑞士纳沙泰尔，Zenith Watches创意总监，前Bell & Ross手表设计师，专注高端手表工业设计", platform: "behance" },
-                { name: "HoHyeon Lim", profile_url: "https://www.behance.net/hohyunrim4b40", notes: "工业设计师，代表作EDGE CLOCK，Behance工业设计画廊精选", platform: "behance" },
-                { name: "TAEHYEONG KIM", profile_url: "https://www.behance.net/xogud010111", notes: "工业设计师，代表作elio，Behance工业设计画廊精选", platform: "behance" },
-                { name: "Ayush Singh Patel", profile_url: "https://www.behance.net/AyushSingh95", notes: "工业设计师，代表作Noise Junior - Champ 3，Behance工业设计画廊精选", platform: "behance" },
-                { name: "Siddharth Jindal", profile_url: "https://www.behance.net/siddharthjindal", notes: "工业设计师，代表作Brink，Behance工业设计画廊精选", platform: "behance" },
-                { name: "KAIRI EGUCHI", profile_url: "https://www.behance.net/kairieguchidesign", notes: "工业设计师，代表作Ā TYPE WALL，Behance工业设计画廊精选", platform: "behance" },
-                { name: "Andrew Perkins", profile_url: "https://www.behance.net/andrew_perkins", notes: "工业设计师，810好评，373关注者，代表作Synapse Chair/Marble & Metal Bar Accessories", platform: "behance" },
-                { name: "Joaquin Herlein", profile_url: "https://www.behance.net/Joaquinherlein", notes: "工业设计师，3733好评，1634关注者，代表作EXEC模块化手机壳/ION高端钛厨具概念", platform: "behance" },
-                { name: "Mick Belief", profile_url: "https://www.behance.net/mickbelief", notes: "工业设计师，2020好评，692关注者，代表作喷气动力ISR无人机/滴滤咖啡机", platform: "behance" },
-                { name: "Alfredo Marco Pradil", profile_url: "https://www.behance.net/pradil", notes: "字体/产品设计师，11.8万好评，1.5万关注者，代表作Alienware字体/Amper Sans", platform: "behance" },
-                { name: "Ridzert Ingenegeren", profile_url: "https://www.behance.net/ridzert", notes: "工业设计师，Behance工业设计搜索推荐", platform: "behance" },
-                { name: "RAPHAEL CRESPO", profile_url: "https://www.behance.net/raphaelcrespo", notes: "工业设计师，LinkedIn验证，Behance工业设计搜索推荐", platform: "behance" },
-                { name: "Neetica Pande", profile_url: "https://www.behance.net/neeticapande", notes: "产品设计师，Behance工业设计搜索推荐", platform: "behance" },
-                { name: "Jenil shah", profile_url: "https://www.behance.net/shahjenil36", notes: "工业设计师，14个工作已完成，Behance Pro会员", platform: "behance" },
-                { name: "Arthur Carvalho Vieira", profile_url: "https://www.behance.net/ArthurVieira", notes: "工业设计师，20个工作已完成，Behance Pro会员", platform: "behance" },
-                { name: "DHIRAJ CHOUDHARI", profile_url: "https://www.behance.net/dhirajchoudhari", notes: "工业设计师，LinkedIn验证，4个工作已完成，Behance Pro会员", platform: "behance" },
-                { name: "JunSeo Oh", profile_url: "https://www.behance.net/ohjunseo", notes: "工业设计师，Behance工业设计搜索推荐", platform: "behance" },
+                { name: "厂长", profile_url: "https://www.puxiang.com/u100483/gallery", notes: "超级单体设计师，579粉丝，人气9.8万+，TOP榜铜奖(第170期)", platform: "puxiang" },
+                { name: "Vitaliy Tarasov", profile_url: "https://www.behance.net/VitaliyTarasov", notes: "工业设计师/艺术总监，塞浦路斯尼科西亚，Evapolar系列", platform: "behance" },
+                { name: "Kenji Abe", profile_url: "https://www.behance.net/kenjiabe", notes: "产品设计师，东京，代表作ECHO/LACUNA/APERIRE", platform: "behance" },
+                { name: "Hyeonggyun Han", profile_url: "https://www.behance.net/hyeonggyunhan", notes: "工业设计师，韩国，代表作Hound/PLA/GeoShift", platform: "behance" },
+                { name: "Rand Nassar", profile_url: "https://www.behance.net/rand_nassar", notes: "产品设计师，约旦，代表作MYLO盲文胰岛素笔/SCOPE远程医疗设备", platform: "behance" },
+                { name: "Sébastien Gobert", profile_url: "https://www.behance.net/sebastiengobert", notes: "创意总监，瑞士，Zenith Watches创意总监", platform: "behance" },
+                { name: "HoHyeon Lim", profile_url: "https://www.behance.net/hohyunrim4b40", notes: "工业设计师，代表作EDGE CLOCK", platform: "behance" },
+                { name: "TAEHYEONG KIM", profile_url: "https://www.behance.net/xogud010111", notes: "工业设计师，代表作elio", platform: "behance" },
+                { name: "Ayush Singh Patel", profile_url: "https://www.behance.net/AyushSingh95", notes: "工业设计师，代表作Noise Junior - Champ 3", platform: "behance" },
+                { name: "Siddharth Jindal", profile_url: "https://www.behance.net/siddharthjindal", notes: "工业设计师，代表作Brink", platform: "behance" },
+                { name: "KAIRI EGUCHI", profile_url: "https://www.behance.net/kairieguchidesign", notes: "工业设计师，代表作Ā TYPE WALL", platform: "behance" },
+                { name: "Andrew Perkins", profile_url: "https://www.behance.net/andrew_perkins", notes: "工业设计师，810好评，373关注者", platform: "behance" },
+                { name: "Joaquin Herlein", profile_url: "https://www.behance.net/Joaquinherlein", notes: "工业设计师，3733好评，1634关注者", platform: "behance" },
+                { name: "Mick Belief", profile_url: "https://www.behance.net/mickbelief", notes: "工业设计师，2020好评，692关注者", platform: "behance" },
+                { name: "Alfredo Marco Pradil", profile_url: "https://www.behance.net/pradil", notes: "字体/产品设计师，11.8万好评，1.5万关注者", platform: "behance" },
+                { name: "Ridzert Ingenegeren", profile_url: "https://www.behance.net/ridzert", notes: "工业设计师，Behance搜索推荐", platform: "behance" },
+                { name: "RAPHAEL CRESPO", profile_url: "https://www.behance.net/raphaelcrespo", notes: "工业设计师，LinkedIn验证", platform: "behance" },
+                { name: "Neetica Pande", profile_url: "https://www.behance.net/neeticapande", notes: "产品设计师，Behance搜索推荐", platform: "behance" },
+                { name: "Jenil shah", profile_url: "https://www.behance.net/shahjenil36", notes: "工业设计师，14个工作，Behance Pro会员", platform: "behance" },
+                { name: "Arthur Carvalho Vieira", profile_url: "https://www.behance.net/ArthurVieira", notes: "工业设计师，20个工作，Behance Pro会员", platform: "behance" },
+                { name: "DHIRAJ CHOUDHARI", profile_url: "https://www.behance.net/dhirajchoudhari", notes: "工业设计师，LinkedIn验证，Behance Pro会员", platform: "behance" },
+                { name: "JunSeo Oh", profile_url: "https://www.behance.net/ohjunseo", notes: "工业设计师，Behance搜索推荐", platform: "behance" },
                 { name: "Mirko Romanelli", profile_url: "https://www.behance.net/mirkoromanelli", notes: "工业设计师，Behance Pro会员", platform: "behance" },
-                { name: "Enrico Secci", profile_url: "https://www.behance.net/enricosecci", notes: "工业设计师，Behance工业设计搜索推荐", platform: "behance" },
-                { name: "Igor Jankovic", profile_url: "https://www.behance.net/IgorJankovic", notes: "工业设计师，13个工作已完成，Behance Pro会员", platform: "behance" },
+                { name: "Enrico Secci", profile_url: "https://www.behance.net/enricosecci", notes: "工业设计师，Behance搜索推荐", platform: "behance" },
+                { name: "Igor Jankovic", profile_url: "https://www.behance.net/IgorJankovic", notes: "工业设计师，13个工作，Behance Pro会员", platform: "behance" },
                 { name: "Mauro Manzo", profile_url: "https://www.behance.net/mauromanzo1", notes: "工业设计师，Behance Pro会员", platform: "behance" },
-                { name: "Tiago Leitao", profile_url: "https://www.behance.net/tiagoleitao", notes: "产品设计师，6806好评，5456关注者，7.2万项目查看，Behance特别推荐，115个工作已完成", platform: "behance" },
-                { name: "Rick Lundskow", profile_url: "https://www.behance.net/ricklundskow", notes: "工业设计师，6768好评，3819关注者，7.6万项目查看，Behance推荐", platform: "behance" },
-                { name: "Usman Mahmood", profile_url: "https://www.behance.net/usmanmahmood", notes: "产品设计师，3026好评，662关注者，3.9万项目查看，Behance推荐", platform: "behance" },
-                { name: "Mouvli V", profile_url: "https://www.behance.net/mouvli", notes: "3D产品动画师，4883好评，1724关注者，5.9万项目查看，专注产品CGI和动画", platform: "behance" },
-                { name: "Bernat Casasnovas Torres", profile_url: "https://www.behance.net/bernatcasasnovas", notes: "工业设计师，2.7万好评，1万关注者，33.9万项目查看，Behance推荐", platform: "behance" },
-                { name: "Ivan Ermakov", profile_url: "https://www.behance.net/ivanermakov", notes: "产品设计师，6.2万好评，4479关注者，70.8万项目查看，Behance推荐", platform: "behance" },
-                { name: "Thais Katsumi", profile_url: "https://www.behance.net/thaiskatsumi", notes: "3D设计师，3409好评，1161关注者，5.1万项目查看，Behance推荐", platform: "behance" },
-                { name: "Danil Repko", profile_url: "https://www.behance.net/danilrepko", notes: "家具设计师，1388好评，506关注者，1.5万项目查看，代表作ALMA Vanity Set", platform: "behance" },
-                { name: "Kenneth Perez", profile_url: "https://www.behance.net/kennethperez", notes: "家具设计师，1143好评，343关注者，9.7万项目查看，代表作Biedermeier Pool Table", platform: "behance" },
-                { name: "Patricia Castro de Oliveira", profile_url: "https://www.behance.net/patriciacastro", notes: "室内/家具设计师，6682好评，3489关注者，9.9万项目查看，Behance推荐", platform: "behance" },
-                { name: "Esraa Ashraf", profile_url: "https://www.behance.net/esraaashraf", notes: "室内设计师，737好评，468关注者，1万项目查看，Behance推荐", platform: "behance" },
-                { name: "Sahar Habibi", profile_url: "https://www.behance.net/saharhabibi", notes: "室内设计师，4651好评，1106关注者，3.4万项目查看，Behance推荐", platform: "behance" },
-                { name: "Alina Libetska", profile_url: "https://www.behance.net/alinalibetska", notes: "建筑可视化设计师，685好评，168关注者，1.1万项目查看，Behance推荐", platform: "behance" },
-                { name: "M N E", profile_url: "https://www.behance.net/mne", notes: "室内设计师，3476好评，1380关注者，5.6万项目查看，Behance推荐", platform: "behance" },
-                { name: "Vashantsev Nik", profile_url: "https://www.behance.net/vashantsevnik", notes: "室内设计师，2149好评，524关注者，3万项目查看，Behance推荐", platform: "behance" },
-                { name: "Ucha Tsibadze", profile_url: "https://www.behance.net/uchatsibadze", notes: "室内设计师，678好评，119关注者，1.3万项目查看，Behance推荐", platform: "behance" },
-                { name: "mariem fawzi", profile_url: "https://www.behance.net/mariemfawzi", notes: "室内设计师，255好评，75关注者，2613项目查看，Behance推荐", platform: "behance" },
-                { name: "Anna Krupkin", profile_url: "https://www.behance.net/annakrupkin", notes: "插画家，1900好评，163关注者，1.5万项目查看，Behance推荐", platform: "behance" },
-                { name: "Alexandru Negru", profile_url: "https://www.behance.net/alexandrunegru", notes: "3D产品可视化师，6096好评，804关注者，7.5万项目查看，Behance推荐", platform: "behance" },
-                { name: "Oleksandr Honcharuk", profile_url: "https://www.behance.net/oleksandrhoncharuk", notes: "3D动画师，6362好评，612关注者，5.3万项目查看，Behance推荐", platform: "behance" },
-                { name: "David Adebayo", profile_url: "https://www.behance.net/davidadebayo", notes: "产品设计师，1.4万好评，492关注者，16.3万项目查看，Behance推荐", platform: "behance" },
-                { name: "Uladzimir Hermanovich", profile_url: "https://www.behance.net/uladzimirhermanovich", notes: "3D产品动画师，3193好评，661关注者，Behance推荐", platform: "behance" },
-                { name: "Sachin Zakarde", profile_url: "https://www.behance.net/sachinzakarde", notes: "工业设计师，Behance工业设计搜索推荐", platform: "behance" }
+                { name: "Tiago Leitao", profile_url: "https://www.behance.net/tiagoleitao", notes: "产品设计师，6806好评，5456关注者，115个工作", platform: "behance" },
+                { name: "Rick Lundskow", profile_url: "https://www.behance.net/ricklundskow", notes: "工业设计师，6768好评，3819关注者", platform: "behance" },
+                { name: "Usman Mahmood", profile_url: "https://www.behance.net/usmanmahmood", notes: "产品设计师，3026好评，662关注者", platform: "behance" },
+                { name: "Mouvli V", profile_url: "https://www.behance.net/mouvli", notes: "3D产品动画师，4883好评，1724关注者", platform: "behance" },
+                { name: "Bernat Casasnovas Torres", profile_url: "https://www.behance.net/bernatcasasnovas", notes: "工业设计师，2.7万好评，1万关注者", platform: "behance" },
+                { name: "Ivan Ermakov", profile_url: "https://www.behance.net/ivanermakov", notes: "产品设计师，6.2万好评，4479关注者", platform: "behance" },
+                { name: "Thais Katsumi", profile_url: "https://www.behance.net/thaiskatsumi", notes: "3D设计师，3409好评，1161关注者", platform: "behance" },
+                { name: "Danil Repko", profile_url: "https://www.behance.net/danilrepko", notes: "家具设计师，1388好评，506关注者", platform: "behance" },
+                { name: "Kenneth Perez", profile_url: "https://www.behance.net/kennethperez", notes: "家具设计师，1143好评，343关注者", platform: "behance" },
+                { name: "Patricia Castro de Oliveira", profile_url: "https://www.behance.net/patriciacastro", notes: "室内/家具设计师，6682好评，3489关注者", platform: "behance" },
+                { name: "Esraa Ashraf", profile_url: "https://www.behance.net/esraaashraf", notes: "室内设计师，737好评，468关注者", platform: "behance" },
+                { name: "Sahar Habibi", profile_url: "https://www.behance.net/saharhabibi", notes: "室内设计师，4651好评，1106关注者", platform: "behance" },
+                { name: "Alina Libetska", profile_url: "https://www.behance.net/alinalibetska", notes: "建筑可视化设计师，685好评，168关注者", platform: "behance" },
+                { name: "M N E", profile_url: "https://www.behance.net/mne", notes: "室内设计师，3476好评，1380关注者", platform: "behance" },
+                { name: "Vashantsev Nik", profile_url: "https://www.behance.net/vashantsevnik", notes: "室内设计师，2149好评，524关注者", platform: "behance" },
+                { name: "Ucha Tsibadze", profile_url: "https://www.behance.net/uchatsibadze", notes: "室内设计师，678好评，119关注者", platform: "behance" },
+                { name: "mariem fawzi", profile_url: "https://www.behance.net/mariemfawzi", notes: "室内设计师，255好评，75关注者", platform: "behance" },
+                { name: "Anna Krupkin", profile_url: "https://www.behance.net/annakrupkin", notes: "插画家，1900好评，163关注者", platform: "behance" },
+                { name: "Alexandru Negru", profile_url: "https://www.behance.net/alexandrunegru", notes: "3D产品可视化师，6096好评，804关注者", platform: "behance" },
+                { name: "Oleksandr Honcharuk", profile_url: "https://www.behance.net/oleksandrhoncharuk", notes: "3D动画师，6362好评，612关注者", platform: "behance" },
+                { name: "David Adebayo", profile_url: "https://www.behance.net/davidadebayo", notes: "产品设计师，1.4万好评，492关注者", platform: "behance" },
+                { name: "Uladzimir Hermanovich", profile_url: "https://www.behance.net/uladzimirhermanovich", notes: "3D产品动画师，3193好评，661关注者", platform: "behance" },
+                { name: "Sachin Zakarde", profile_url: "https://www.behance.net/sachinzakarde", notes: "工业设计师，Behance搜索推荐", platform: "behance" }
             ]
         };
 
-        // 模拟本周新作品数据（实际由自动化任务生成）
-        const weeklyUpdates = [
-            // 示例数据，展示时间线效果
-            {
-                date: '2026-05-24',
-                author: '厂长',
-                platform: 'puxiang',
-                author_type: 'individual',
-                title: '气候自适应智能灌溉系统',
-                desc: '基于环境感知的智能灌溉解决方案，可根据土壤湿度、气温、光照自动调节浇水量',
-                url: 'https://www.puxiang.com/u100483/gallery',
-                isNew: true
-            }
-        ];
+        // 本周新作品（由自动化任务每周填充）
+        const weeklyUpdates = [];
 
+        // ==================== STATE ====================
         let allDesigners = [];
-        let currentFilter = 'all';
+        let currentView = 'featured';
 
+        // ==================== INIT ====================
         function init() {
-            // 合并数据
             designersData.companies.forEach(d => allDesigners.push({ ...d, type: 'company' }));
             designersData.individuals.forEach(d => allDesigners.push({ ...d, type: 'individual' }));
 
-            // 更新统计
-            document.getElementById('footer-count').textContent = allDesigners.length;
-
-            // 渲染时间线
-            renderTimeline();
-
-            // 绑定事件
+            updateStats();
+            renderSidebarDesigners();
+            renderView();
             bindEvents();
         }
 
-        function getInitials(name) { return name.charAt(0).toUpperCase(); }
-
-        function getAvatarColorClass(name) {
-            const idx = name.length % 6;
-            return `avatar-c${idx}`;
-        }
-
-        function getPlatformClass(p) {
-            return `platform-${p}`;
-        }
-
-        function getPlatformName(p) {
-            return { puxiang: '普象', behance: 'Behance', zcool: '站酷' }[p] || p;
-        }
-
-        function getTypeLabel(t) {
-            return t === 'company' ? '设计公司' : '设计师';
-        }
+        // ==================== HELPERS ====================
+        function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+        function getInitials(n) { return n.charAt(0).toUpperCase(); }
+        function avatarClass(n) { return 'avatar-c' + (n.length % 6); }
+        function platformName(p) { return { puxiang: '普象', behance: 'Behance', zcool: '站酷' }[p] || p; }
+        function typeLabel(t) { return t === 'company' ? '设计公司' : '设计师'; }
 
         function formatDate(dateStr) {
-            const date = new Date(dateStr);
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
-            const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-            return {
-                date: `${month}月${day}日`,
-                day: weekdays[date.getDay()]
-            };
+            const d = new Date(dateStr);
+            const weekdays = ['周日','周一','周二','周三','周四','周五','周六'];
+            return { date: `${d.getMonth()+1}月${d.getDate()}日`, day: weekdays[d.getDay()] };
         }
 
-        function createTimelineItem(item, isNew = false) {
-            const time = formatDate(item.date || new Date().toISOString());
-            const div = document.createElement('div');
-            div.className = `timeline-item ${isNew ? 'new' : ''}`;
-
-            div.innerHTML = `
-                <div class="timeline-time">
-                    <div class="time-date">${time.date}</div>
-                    <div class="time-day">${time.day}</div>
-                </div>
-                <div class="timeline-content">
-                    <a href="${item.url || item.profile_url}" target="_blank" class="card">
-                        <div class="card-header">
-                            <div class="card-avatar ${getAvatarColorClass(item.author)}">${getInitials(item.author)}</div>
-                            <div class="card-meta">
-                                <span class="card-author">${escapeHtml(item.author)}</span>
-                                <span class="card-platform ${getPlatformClass(item.platform)}">${getPlatformName(item.platform)}</span>
-                            </div>
-                        </div>
-                        <div class="card-title">${escapeHtml(item.title || '发布新作品')}</div>
-                        <div class="card-desc">${escapeHtml(item.desc || item.notes)}</div>
-                        <div class="card-footer">
-                            <span class="card-tag">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                                ${getTypeLabel(item.author_type || item.type)}
-                            </span>
-                            <span class="card-link">
-                                查看作品
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            `;
-            return div;
+        // ==================== STATS ====================
+        function updateStats() {
+            const total = allDesigners.length;
+            const puxiang = allDesigners.filter(d => d.platform === 'puxiang').length;
+            const behance = allDesigners.filter(d => d.platform === 'behance').length;
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-puxiang').textContent = puxiang;
+            document.getElementById('stat-behance').textContent = behance;
+            document.getElementById('stat-week').textContent = weeklyUpdates.length;
+            document.getElementById('sidebar-count').textContent = total;
+            const badge = document.getElementById('new-count-badge');
+            if (weeklyUpdates.length > 0) { badge.textContent = weeklyUpdates.length; badge.style.display = ''; }
+            else { badge.style.display = 'none'; }
         }
 
-        function createWeekSection(title, items, isNew = false) {
-            const section = document.createElement('div');
-            section.className = 'week-section';
-
-            const header = document.createElement('div');
-            header.className = 'week-header';
-            header.innerHTML = `
-                <span class="week-badge">${title}</span>
-                <span class="week-count">${items.length} 条动态</span>
-            `;
-            section.appendChild(header);
-
-            const timeline = document.createElement('div');
-            timeline.className = 'timeline';
-            items.forEach(item => {
-                timeline.appendChild(createTimelineItem(item, isNew));
+        // ==================== SIDEBAR ====================
+        function renderSidebarDesigners() {
+            const list = document.getElementById('designerList');
+            list.innerHTML = '';
+            allDesigners.forEach(d => {
+                const a = document.createElement('a');
+                a.className = 'designer-list-item';
+                a.href = d.profile_url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.title = d.notes;
+                a.innerHTML = `
+                    <div class="designer-list-avatar ${avatarClass(d.name)}">${getInitials(d.name)}</div>
+                    <span class="designer-list-name">${esc(d.name)}</span>
+                    <span class="platform-dot ${d.platform}"></span>
+                `;
+                list.appendChild(a);
             });
-            section.appendChild(timeline);
-
-            return section;
         }
 
-        function renderTimeline() {
-            const container = document.getElementById('timeline');
-            container.innerHTML = '';
+        // ==================== VIEWS ====================
+        function renderView() {
+            const main = document.getElementById('mainContent');
+            const title = document.getElementById('topbar-title');
+            const count = document.getElementById('topbar-count');
 
-            // 根据筛选条件渲染
-            let items = [];
-
-            if (currentFilter === 'this-week') {
-                // 本周更新（实际数据由自动化任务填充）
-                items = weeklyUpdates;
-                if (items.length === 0) {
-                    container.innerHTML = `
-                        <div class="empty-state">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <p>本周暂无新作品</p>
-                            <p style="font-size: 0.8rem; margin-top: 0.5rem;">每周一自动更新</p>
-                        </div>`;
-                    return;
-                }
-                container.appendChild(createWeekSection('本周更新', items, true));
-            } else if (currentFilter === 'all') {
-                // 全部设计师（作为基础档案展示）
-                // 按平台分组展示
-                const puxiangItems = allDesigners.filter(d => d.platform === 'puxiang');
-                const behanceItems = allDesigners.filter(d => d.platform === 'behance');
-
-                if (weeklyUpdates.length > 0) {
-                    container.appendChild(createWeekSection('本周更新', weeklyUpdates, true));
-                }
-
-                // 展示设计师档案
-                container.appendChild(createWeekSection('监测中的设计师', allDesigners.slice(0, 10)));
+            if (currentView === 'featured') {
+                title.textContent = '本周精选';
+                count.textContent = weeklyUpdates.length > 0 ? `${weeklyUpdates.length} 条新作品` : '';
+                renderFeatured(main);
             } else {
-                // 按平台筛选
-                items = allDesigners.filter(d => d.platform === currentFilter);
-                container.appendChild(createWeekSection(getPlatformName(currentFilter), items));
+                title.textContent = '全部动态';
+                count.textContent = `${weeklyUpdates.length} 条新作品`;
+                renderAll(main);
             }
         }
 
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
+        function renderFeatured(container) {
+            if (weeklyUpdates.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        </div>
+                        <div class="empty-title">本周暂无新作品</div>
+                        <div class="empty-desc">每周一自动检查设计师更新，新作品将在这里展示</div>
+                    </div>`;
+                return;
+            }
+            renderTimeline(container, weeklyUpdates, true);
         }
 
+        function renderAll(container) {
+            if (weeklyUpdates.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        </div>
+                        <div class="empty-title">本周暂无新作品</div>
+                        <div class="empty-desc">每周一自动检查设计师更新，新作品将在这里展示</div>
+                    </div>`;
+                return;
+            }
+            renderTimeline(container, weeklyUpdates, false);
+        }
+
+        function renderTimeline(container, items, isFeatured) {
+            // Group by date
+            const groups = {};
+            items.forEach(item => {
+                const dateKey = item.date || new Date().toISOString().split('T')[0];
+                if (!groups[dateKey]) groups[dateKey] = [];
+                groups[dateKey].push(item);
+            });
+
+            const sortedDates = Object.keys(groups).sort((a, b) => new Date(b) - new Date(a));
+
+            let html = '<div class="timeline">';
+            sortedDates.forEach(dateKey => {
+                const time = formatDate(dateKey);
+                const groupItems = groups[dateKey];
+                groupItems.forEach(item => {
+                    html += `
+                        <div class="date-group" style="position: relative;">
+                            <div class="date-label">
+                                <div class="dl-date">${time.date}</div>
+                                <div class="dl-day">${time.day}</div>
+                            </div>
+                            <div class="timeline-dot ${isFeatured ? 'new' : ''}"></div>
+                            <a href="${item.url || item.profile_url}" target="_blank" class="card">
+                                ${item.cover_url ? `<div class="card-image"><img src="${esc(item.cover_url)}" alt="" loading="lazy" /></div>` : ''}
+                                <div class="card-header">
+                                    <div class="card-avatar ${avatarClass(item.author)}">${getInitials(item.author)}</div>
+                                    <span class="card-author">${esc(item.author)}</span>
+                                    <span class="card-platform platform-${item.platform}">${platformName(item.platform)}</span>
+                                </div>
+                                <div class="card-title">${esc(item.title)}</div>
+                                <div class="card-desc">${esc(item.desc)}</div>
+                                <div class="card-footer">
+                                    <span class="card-type">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                        ${typeLabel(item.author_type || 'individual')}
+                                    </span>
+                                    <span class="card-link">
+                                        查看作品
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>`;
+                });
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // ==================== EVENTS ====================
         function bindEvents() {
-            // 筛选标签
-            document.querySelectorAll('.filter-tab').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    currentFilter = tab.dataset.filter;
-                    renderTimeline();
+            // Nav items
+            document.querySelectorAll('.nav-item[data-view]').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                    item.classList.add('active');
+                    currentView = item.dataset.view;
+                    renderView();
+                    // Close mobile sidebar
+                    document.getElementById('sidebar').classList.remove('open');
+                    document.getElementById('sidebarOverlay').classList.remove('open');
                 });
             });
 
-            // 搜索
+            // Mobile menu
+            document.getElementById('menuBtn').addEventListener('click', () => {
+                document.getElementById('sidebar').classList.toggle('open');
+                document.getElementById('sidebarOverlay').classList.toggle('open');
+            });
+            document.getElementById('sidebarOverlay').addEventListener('click', () => {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('open');
+            });
+
+            // Search
             document.getElementById('search-input').addEventListener('input', (e) => {
-                const keyword = e.target.value.toLowerCase().trim();
-                if (!keyword) {
-                    renderTimeline();
-                    return;
-                }
-
-                const filtered = allDesigners.filter(d =>
-                    d.name.toLowerCase().includes(keyword) ||
-                    (d.notes && d.notes.toLowerCase().includes(keyword))
+                const kw = e.target.value.toLowerCase().trim();
+                if (!kw) { renderView(); return; }
+                const filtered = weeklyUpdates.filter(i =>
+                    i.title.toLowerCase().includes(kw) ||
+                    i.author.toLowerCase().includes(kw) ||
+                    i.desc.toLowerCase().includes(kw)
                 );
-
-                const container = document.getElementById('timeline');
-                container.innerHTML = '';
+                const main = document.getElementById('mainContent');
                 if (filtered.length === 0) {
-                    container.innerHTML = `
+                    main.innerHTML = `
                         <div class="empty-state">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <p>未找到匹配的设计师</p>
+                            <div class="empty-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            </div>
+                            <div class="empty-title">未找到匹配结果</div>
+                            <div class="empty-desc">尝试其他关键词</div>
                         </div>`;
                     return;
                 }
-                container.appendChild(createWeekSection('搜索结果', filtered));
+                renderTimeline(main, filtered, false);
             });
         }
 
