@@ -7,21 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* === BrandPulse Design System (Inherited) === */
+        /* === BrandPulse Design System === */
         :root {
-            /* 背景色系 */
             --bg-primary: #0f1419;
             --bg-secondary: #1a1f2e;
             --bg-card: #1e2530;
             --bg-card-hover: #252d3a;
             --bg-input: #1e2530;
-
-            /* 文字色系 */
             --text-primary: #e6e6e6;
             --text-secondary: #8b949e;
             --text-muted: #6b7280;
-
-            /* 强调色 */
             --accent-cyan: #22d3ee;
             --accent-cyan-dark: #06b6d4;
             --accent-green: #22c55e;
@@ -31,32 +26,17 @@
             --accent-pink: #ec4899;
             --accent-red: #ef4444;
             --accent-orange: #f97316;
-
-            /* 平台色（映射到 BrandPulse 标签色体系） */
-            --zcool: #ef4444;
-            --zcool-bg: rgba(239, 68, 68, 0.1);
-            --puxiang: #22c55e;
-            --puxiang-bg: rgba(34, 197, 94, 0.1);
-            --behance: #3b82f6;
-            --behance-bg: rgba(59, 130, 246, 0.1);
-
-            /* 边框 */
             --border-color: rgba(255,255,255,0.06);
             --border-hover: rgba(255,255,255,0.1);
-
-            /* 字体 */
             --font-body: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             --transition: 0.2s ease;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* === Scrollbar (BrandPulse style) === */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-
-        /* === Focus (BrandPulse style) === */
         :focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
 
         body {
@@ -82,127 +62,58 @@
             backdrop-filter: blur(12px);
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
+        .header-left { display: flex; align-items: center; gap: 1rem; }
         .logo {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-cyan-dark));
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 13px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 13px;
             color: var(--bg-primary);
             letter-spacing: -0.5px;
         }
+        .header h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.3px; }
+        .header h1 span { color: var(--text-muted); font-weight: 400; margin-left: 0.5rem; font-size: 0.85rem; }
+        .header-right { display: flex; align-items: center; gap: 0.75rem; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .last-update { font-size: 0.8rem; color: var(--text-muted); }
 
-        .header h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            color: var(--text-primary);
-        }
+        /* === LAYOUT === */
+        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
 
-        .header h1 span {
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-left: 0.5rem;
-            font-size: 0.85rem;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent-green);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .last-update {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* === CONTAINER === */
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem 3rem;
-        }
-
-        /* === STATS === */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            transition: var(--transition);
-        }
-
-        .stat-card:hover {
-            border-color: var(--border-hover);
-            background: var(--bg-card-hover);
-        }
-
-        .stat-label {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-number {
-            font-size: 1.75rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            line-height: 1;
-        }
-
-        .stat-number.accent { color: var(--accent-cyan); }
-        .stat-number.zcool { color: var(--zcool); }
-        .stat-number.puxiang { color: var(--puxiang); }
-        .stat-number.behance { color: var(--behance); }
-
-        /* === TOOLBAR === */
-        .toolbar {
+        /* === FILTER BAR === */
+        .filter-bar {
             display: flex;
             align-items: center;
             gap: 0.75rem;
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .filter-tab:hover { color: var(--text-primary); background: var(--bg-card); }
+        .filter-tab.active { color: var(--accent-cyan); background: rgba(34, 211, 238, 0.1); border-color: rgba(34, 211, 238, 0.3); }
+
+        .filter-spacer { flex: 1; }
+
         .search-box {
-            flex: 1;
-            min-width: 200px;
-            max-width: 360px;
             position: relative;
+            min-width: 200px;
+            max-width: 280px;
         }
 
         .search-box svg {
@@ -216,205 +127,211 @@
 
         .search-box input {
             width: 100%;
-            padding: 0.6rem 0.75rem 0.6rem 2.5rem;
+            padding: 0.5rem 0.75rem 0.5rem 2.25rem;
             background: var(--bg-input);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-primary);
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             font-family: var(--font-body);
             transition: var(--transition);
             outline: none;
         }
 
         .search-box input::placeholder { color: var(--text-muted); }
-        .search-box input:focus {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+        .search-box input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15); }
+
+        /* === TIMELINE === */
+        .timeline { position: relative; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 60px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
         }
 
-        .filter-select {
-            padding: 0.6rem 2rem 0.6rem 0.75rem;
-            background: var(--bg-input);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 0.88rem;
-            font-family: var(--font-body);
-            cursor: pointer;
-            outline: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            transition: var(--transition);
+        .timeline-item {
+            display: flex;
+            gap: 1.25rem;
+            margin-bottom: 1rem;
+            position: relative;
         }
 
-        .filter-select:focus { border-color: var(--accent-cyan); }
-
-        .toolbar-spacer { flex: 1; }
-
-        .btn {
-            padding: 0.6rem 1.1rem;
-            border-radius: 8px;
-            font-size: 0.88rem;
-            font-family: var(--font-body);
-            font-weight: 500;
-            cursor: pointer;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            color: var(--text-primary);
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            white-space: nowrap;
-            text-decoration: none;
+        .timeline-time {
+            width: 60px;
+            flex-shrink: 0;
+            text-align: right;
+            padding-right: 1.25rem;
+            position: relative;
         }
 
-        .btn:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-hover);
+        .timeline-time::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-hover);
+            border: 2px solid var(--bg-primary);
         }
 
-        .btn svg { width: 16px; height: 16px; }
-
-        /* === DESIGNER GRID === */
-        .designers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1rem;
+        .timeline-item.new .timeline-time::after {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
         }
 
-        .designer-card {
+        .time-date { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+        .time-day { font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; }
+
+        .timeline-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* === CARD === */
+        .card {
             background: var(--bg-card);
             border: 1px solid transparent;
             border-radius: 12px;
-            overflow: hidden;
+            padding: 16px 20px;
             transition: all 0.2s;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
             display: block;
-            padding: 20px;
         }
 
-        .designer-card:hover {
+        .card:hover {
             background: var(--bg-card-hover);
             border-color: var(--border-hover);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
-        .designer-card .card-header {
+        .card-header {
             display: flex;
             align-items: flex-start;
-            gap: 0.85rem;
-            margin-bottom: 0.85rem;
+            gap: 0.75rem;
+            margin-bottom: 0.6rem;
         }
 
-        .designer-avatar {
-            width: 40px;
-            height: 40px;
+        .card-avatar {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            background: var(--accent-cyan);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 12px;
             color: var(--bg-primary);
             flex-shrink: 0;
         }
 
-        /* BrandPulse 头像渐变色算法 */
-        .designer-avatar.c0 { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
-        .designer-avatar.c1 { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
-        .designer-avatar.c2 { background: linear-gradient(135deg, #55efc4, #00b894); }
-        .designer-avatar.c3 { background: linear-gradient(135deg, #fdcb6e, #f39c12); }
-        .designer-avatar.c4 { background: linear-gradient(135deg, #74b9ff, #0984e3); }
-        .designer-avatar.c5 { background: linear-gradient(135deg, #fd79a8, #e84393); }
+        /* BrandPulse 头像渐变色 */
+        .avatar-c0 { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+        .avatar-c1 { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
+        .avatar-c2 { background: linear-gradient(135deg, #55efc4, #00b894); }
+        .avatar-c3 { background: linear-gradient(135deg, #fdcb6e, #f39c12); }
+        .avatar-c4 { background: linear-gradient(135deg, #74b9ff, #0984e3); }
+        .avatar-c5 { background: linear-gradient(135deg, #fd79a8, #e84393); }
 
-        .designer-info {
+        .card-meta {
             flex: 1;
             min-width: 0;
-        }
-
-        .designer-name {
-            font-size: 0.94rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.2rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .designer-platform {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
         }
 
-        .platform-badge {
-            padding: 0.1rem 0.45rem;
+        .card-author { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); }
+        .card-platform {
+            padding: 0.1rem 0.4rem;
             border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 500;
-            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .platform-zcool { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
+        .platform-puxiang { background: rgba(34, 197, 94, 0.15); color: var(--accent-green); }
+        .platform-behance { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 0.4rem;
         }
 
-        .platform-badge.zcool { background: var(--zcool-bg); color: var(--zcool); }
-        .platform-badge.puxiang { background: var(--puxiang-bg); color: var(--puxiang); }
-        .platform-badge.behance { background: var(--behance-bg); color: var(--behance); }
-
-        .designer-card .card-body {
-            margin-bottom: 0.85rem;
-        }
-
-        .designer-notes {
-            font-size: 0.85rem;
+        .card-desc {
+            font-size: 0.82rem;
             color: var(--text-secondary);
             line-height: 1.6;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        .designer-card .card-footer {
+        .card-footer {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
             padding-top: 0.75rem;
             border-top: 1px solid var(--border-color);
         }
 
-        .designer-type {
+        .card-tag {
             font-size: 0.75rem;
             color: var(--text-muted);
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.3rem;
         }
 
-        .designer-type svg {
-            width: 14px;
-            height: 14px;
-        }
+        .card-tag svg { width: 14px; height: 14px; }
 
-        .visit-link {
+        .card-link {
+            margin-left: auto;
             font-size: 0.8rem;
             color: var(--accent-cyan);
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            transition: var(--transition);
+            gap: 0.2rem;
         }
 
-        .designer-card:hover .visit-link {
-            color: #67e8f9;
+        .card:hover .card-link { color: #67e8f9; }
+
+        /* === WEEK SECTION === */
+        .week-section { margin-bottom: 2rem; }
+        .week-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-left: 84px;
+        }
+
+        .week-badge {
+            padding: 0.35rem 0.75rem;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+
+        .week-count {
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
         /* === EMPTY STATE === */
@@ -423,10 +340,8 @@
             padding: 4rem 2rem;
             color: var(--text-muted);
         }
-
         .empty-state svg { width: 48px; height: 48px; margin-bottom: 1rem; opacity: 0.3; }
         .empty-state p { font-size: 0.95rem; }
-        .empty-state .hint { font-size: 0.82rem; margin-top: 0.5rem; }
 
         /* === FOOTER === */
         .footer {
@@ -437,34 +352,20 @@
             color: var(--text-muted);
             font-size: 0.8rem;
         }
+        .footer a { color: var(--accent-cyan); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
 
-        .footer a {
-            color: var(--accent-cyan);
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* === RESPONSIVE (BrandPulse breakpoints) === */
-        @media (max-width: 1024px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .container { padding: 1rem; }
             .header { padding: 1rem; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-            .toolbar { gap: 0.5rem; }
-            .search-box { max-width: none; min-width: 0; flex-basis: 100%; }
-            .designers-grid { grid-template-columns: 1fr; }
             .header h1 span { display: none; }
-        }
-
-        @media (max-width: 480px) {
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-            .stat-number { font-size: 1.5rem; }
+            .filter-bar { gap: 0.5rem; }
+            .search-box { max-width: none; flex-basis: 100%; order: -1; margin-bottom: 0.5rem; }
+            .timeline::before { left: 50px; }
+            .timeline-time { width: 50px; padding-right: 1rem; }
+            .week-header { padding-left: 74px; }
+            .card { padding: 14px 16px; }
         }
     </style>
 </head>
@@ -476,78 +377,37 @@
         </div>
         <div class="header-right">
             <div class="status-dot"></div>
-            <span class="last-update">设计师资源导航</span>
+            <span class="last-update">每周一更新</span>
         </div>
     </header>
 
     <div class="container">
-        <!-- Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-label">设计师总数</div>
-                <div class="stat-number accent" id="total-count">—</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">站酷 ZCOOL</div>
-                <div class="stat-number zcool" id="zcool-count">—</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">普象</div>
-                <div class="stat-number puxiang" id="puxiang-count">—</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Behance</div>
-                <div class="stat-number behance" id="behance-count">—</div>
-            </div>
-        </div>
-
-        <!-- Toolbar -->
-        <div class="toolbar">
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <button class="filter-tab active" data-filter="all">全部动态</button>
+            <button class="filter-tab" data-filter="this-week">本周更新</button>
+            <button class="filter-tab" data-filter="puxiang">普象</button>
+            <button class="filter-tab" data-filter="behance">Behance</button>
+            <div class="filter-spacer"></div>
             <div class="search-box">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                <input type="text" id="search-input" placeholder="搜索设计师名称..." />
+                <input type="text" id="search-input" placeholder="搜索设计师/作品..." />
             </div>
-            <select class="filter-select" id="source-filter">
-                <option value="">全部平台</option>
-                <option value="zcool">站酷</option>
-                <option value="puxiang">普象</option>
-                <option value="behance">Behance</option>
-            </select>
-            <select class="filter-select" id="type-filter">
-                <option value="">全部类型</option>
-                <option value="company">设计公司</option>
-                <option value="individual">个人设计师</option>
-            </select>
-            <div class="toolbar-spacer"></div>
-            <a href="https://github.com/robinxinxinxin/design-pulse" target="_blank" class="btn" id="github-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub
-            </a>
         </div>
 
-        <!-- Designers -->
-        <div id="designers-container">
-            <div class="designers-grid" id="designers-grid"></div>
+        <!-- Timeline -->
+        <div class="timeline" id="timeline">
+            <!-- Content will be rendered by JavaScript -->
         </div>
 
         <!-- Footer -->
         <div class="footer">
             <p>Design Pulse — 持续追踪全球优秀产品设计师</p>
-            <p style="margin-top: 0.5rem;">数据来源: <a href="https://www.zcool.com.cn" target="_blank">站酷</a> · <a href="https://www.puxiang.com" target="_blank">普象</a> · <a href="https://www.behance.net" target="_blank">Behance</a></p>
+            <p style="margin-top: 0.5rem;">监测 <span id="footer-count">0</span> 位设计师 · <a href="https://github.com/robinxinxinxin/design-pulse" target="_blank">GitHub</a></p>
         </div>
     </div>
 
     <script>
-        // BrandPulse 头像渐变色（与品牌新品日报一致）
-        const avatarColors = [
-            ['#ff6b6b', '#ee5a24'],
-            ['#a29bfe', '#6c5ce7'],
-            ['#55efc4', '#00b894'],
-            ['#fdcb6e', '#f39c12'],
-            ['#74b9ff', '#0984e3'],
-            ['#fd79a8', '#e84393']
-        ];
-
         // 设计师数据
         const designersData = {
             companies: [
@@ -613,72 +473,165 @@
             ]
         };
 
-        let allDesigners = [];
+        // 模拟本周新作品数据（实际由自动化任务生成）
+        const weeklyUpdates = [
+            // 示例数据，展示时间线效果
+            {
+                date: '2026-05-24',
+                author: '厂长',
+                platform: 'puxiang',
+                author_type: 'individual',
+                title: '气候自适应智能灌溉系统',
+                desc: '基于环境感知的智能灌溉解决方案，可根据土壤湿度、气温、光照自动调节浇水量',
+                url: 'https://www.puxiang.com/u100483/gallery',
+                isNew: true
+            }
+        ];
 
-        function initData() {
+        let allDesigners = [];
+        let currentFilter = 'all';
+
+        function init() {
+            // 合并数据
             designersData.companies.forEach(d => allDesigners.push({ ...d, type: 'company' }));
             designersData.individuals.forEach(d => allDesigners.push({ ...d, type: 'individual' }));
-            updateStats();
-            renderDesigners(allDesigners);
-        }
 
-        function updateStats() {
-            document.getElementById('total-count').textContent = allDesigners.length;
-            document.getElementById('zcool-count').textContent = allDesigners.filter(d => d.platform === 'zcool').length;
-            document.getElementById('puxiang-count').textContent = allDesigners.filter(d => d.platform === 'puxiang').length;
-            document.getElementById('behance-count').textContent = allDesigners.filter(d => d.platform === 'behance').length;
+            // 更新统计
+            document.getElementById('footer-count').textContent = allDesigners.length;
+
+            // 渲染时间线
+            renderTimeline();
+
+            // 绑定事件
+            bindEvents();
         }
 
         function getInitials(name) { return name.charAt(0).toUpperCase(); }
 
+        function getAvatarColorClass(name) {
+            const idx = name.length % 6;
+            return `avatar-c${idx}`;
+        }
+
+        function getPlatformClass(p) {
+            return `platform-${p}`;
+        }
+
         function getPlatformName(p) {
-            return { zcool: '站酷', puxiang: '普象', behance: 'Behance' }[p] || p;
+            return { puxiang: '普象', behance: 'Behance', zcool: '站酷' }[p] || p;
         }
 
-        function getTypeLabel(t) { return t === 'company' ? '设计公司' : '个人设计师'; }
-
-        function getTypeIcon(t) {
-            if (t === 'company') {
-                return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>';
-            }
-            return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+        function getTypeLabel(t) {
+            return t === 'company' ? '设计公司' : '设计师';
         }
 
-        function createDesignerCard(designer) {
-            const card = document.createElement('a');
-            card.className = 'designer-card';
-            card.href = designer.profile_url;
-            card.target = '_blank';
-            card.rel = 'noopener noreferrer';
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            return {
+                date: `${month}月${day}日`,
+                day: weekdays[date.getDay()]
+            };
+        }
 
-            // BrandPulse 头像颜色算法：按名称长度取模
-            const colorIdx = designer.name.length % avatarColors.length;
+        function createTimelineItem(item, isNew = false) {
+            const time = formatDate(item.date || new Date().toISOString());
+            const div = document.createElement('div');
+            div.className = `timeline-item ${isNew ? 'new' : ''}`;
 
-            card.innerHTML = `
-                <div class="card-header">
-                    <div class="designer-avatar c${colorIdx}">${getInitials(designer.name)}</div>
-                    <div class="designer-info">
-                        <div class="designer-name">${escapeHtml(designer.name)}</div>
-                        <div class="designer-platform">
-                            <span class="platform-badge ${designer.platform}">${getPlatformName(designer.platform)}</span>
+            div.innerHTML = `
+                <div class="timeline-time">
+                    <div class="time-date">${time.date}</div>
+                    <div class="time-day">${time.day}</div>
+                </div>
+                <div class="timeline-content">
+                    <a href="${item.url || item.profile_url}" target="_blank" class="card">
+                        <div class="card-header">
+                            <div class="card-avatar ${getAvatarColorClass(item.author)}">${getInitials(item.author)}</div>
+                            <div class="card-meta">
+                                <span class="card-author">${escapeHtml(item.author)}</span>
+                                <span class="card-platform ${getPlatformClass(item.platform)}">${getPlatformName(item.platform)}</span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="designer-notes">${escapeHtml(designer.notes)}</div>
-                </div>
-                <div class="card-footer">
-                    <div class="designer-type">
-                        ${getTypeIcon(designer.type)}
-                        ${getTypeLabel(designer.type)}
-                    </div>
-                    <div class="visit-link">
-                        访问主页
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </div>
+                        <div class="card-title">${escapeHtml(item.title || '发布新作品')}</div>
+                        <div class="card-desc">${escapeHtml(item.desc || item.notes)}</div>
+                        <div class="card-footer">
+                            <span class="card-tag">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                ${getTypeLabel(item.author_type || item.type)}
+                            </span>
+                            <span class="card-link">
+                                查看作品
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                            </span>
+                        </div>
+                    </a>
                 </div>
             `;
-            return card;
+            return div;
+        }
+
+        function createWeekSection(title, items, isNew = false) {
+            const section = document.createElement('div');
+            section.className = 'week-section';
+
+            const header = document.createElement('div');
+            header.className = 'week-header';
+            header.innerHTML = `
+                <span class="week-badge">${title}</span>
+                <span class="week-count">${items.length} 条动态</span>
+            `;
+            section.appendChild(header);
+
+            const timeline = document.createElement('div');
+            timeline.className = 'timeline';
+            items.forEach(item => {
+                timeline.appendChild(createTimelineItem(item, isNew));
+            });
+            section.appendChild(timeline);
+
+            return section;
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline');
+            container.innerHTML = '';
+
+            // 根据筛选条件渲染
+            let items = [];
+
+            if (currentFilter === 'this-week') {
+                // 本周更新（实际数据由自动化任务填充）
+                items = weeklyUpdates;
+                if (items.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <p>本周暂无新作品</p>
+                            <p style="font-size: 0.8rem; margin-top: 0.5rem;">每周一自动更新</p>
+                        </div>`;
+                    return;
+                }
+                container.appendChild(createWeekSection('本周更新', items, true));
+            } else if (currentFilter === 'all') {
+                // 全部设计师（作为基础档案展示）
+                // 按平台分组展示
+                const puxiangItems = allDesigners.filter(d => d.platform === 'puxiang');
+                const behanceItems = allDesigners.filter(d => d.platform === 'behance');
+
+                if (weeklyUpdates.length > 0) {
+                    container.appendChild(createWeekSection('本周更新', weeklyUpdates, true));
+                }
+
+                // 展示设计师档案
+                container.appendChild(createWeekSection('监测中的设计师', allDesigners.slice(0, 10)));
+            } else {
+                // 按平台筛选
+                items = allDesigners.filter(d => d.platform === currentFilter);
+                container.appendChild(createWeekSection(getPlatformName(currentFilter), items));
+            }
         }
 
         function escapeHtml(str) {
@@ -687,41 +640,45 @@
             return div.innerHTML;
         }
 
-        function renderDesigners(designers) {
-            const grid = document.getElementById('designers-grid');
-            grid.innerHTML = '';
+        function bindEvents() {
+            // 筛选标签
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentFilter = tab.dataset.filter;
+                    renderTimeline();
+                });
+            });
 
-            if (designers.length === 0) {
-                grid.innerHTML = `
-                    <div class="empty-state" style="grid-column: 1/-1;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                        <p>暂无匹配的设计师</p>
-                        <p class="hint">尝试调整筛选条件</p>
-                    </div>`;
-                return;
-            }
+            // 搜索
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                const keyword = e.target.value.toLowerCase().trim();
+                if (!keyword) {
+                    renderTimeline();
+                    return;
+                }
 
-            designers.forEach(designer => grid.appendChild(createDesignerCard(designer)));
+                const filtered = allDesigners.filter(d =>
+                    d.name.toLowerCase().includes(keyword) ||
+                    (d.notes && d.notes.toLowerCase().includes(keyword))
+                );
+
+                const container = document.getElementById('timeline');
+                container.innerHTML = '';
+                if (filtered.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <p>未找到匹配的设计师</p>
+                        </div>`;
+                    return;
+                }
+                container.appendChild(createWeekSection('搜索结果', filtered));
+            });
         }
 
-        function filterDesigners() {
-            const keyword = document.getElementById('search-input').value.toLowerCase().trim();
-            const platform = document.getElementById('source-filter').value;
-            const type = document.getElementById('type-filter').value;
-
-            let filtered = allDesigners;
-            if (keyword) filtered = filtered.filter(d => d.name.toLowerCase().includes(keyword) || d.notes.toLowerCase().includes(keyword));
-            if (platform) filtered = filtered.filter(d => d.platform === platform);
-            if (type) filtered = filtered.filter(d => d.type === type);
-
-            renderDesigners(filtered);
-        }
-
-        document.getElementById('search-input').addEventListener('input', filterDesigners);
-        document.getElementById('source-filter').addEventListener('change', filterDesigners);
-        document.getElementById('type-filter').addEventListener('change', filterDesigners);
-
-        initData();
+        init();
     </script>
 </body>
 </html>
