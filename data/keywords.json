@@ -2,45 +2,89 @@
   "zcool": {
     "search_keywords": [
       "产品渲染",
-      "产品效果图",
-      "工业设计渲染",
-      "3D渲染",
-      "Keyshot",
-      "消费电子",
+      "工业设计",
+      "电子产品",
       "智能硬件",
-      "产品设计"
+      "消费电子"
     ],
     "category_keywords": {
       "include": [
-        "手机", "平板", "笔记本", "耳机", "音箱", "智能手表", "充电器", "数据线", "移动电源",
-        "摄像头", "键盘", "鼠标", "显示器", "路由器", "智能家居", "机器人", "无人机",
-        "AR设备", "VR设备", "智能音箱", "投影仪", "游戏手柄", "充电宝", "蓝牙耳机",
-        "智能手环", "平板电脑", "笔记本电脑", "机械键盘", "无线鼠标", "显示器支架",
-        "智能门锁", "扫地机器人", "空气净化器", "加湿器", "台灯", "插座", "转换器"
+        "耳机", "音箱", "手机", "手表", "智能手表", "手环",
+        "充电器", "充电宝", "移动电源", "数据线",
+        "键盘", "鼠标", "显示器", "平板", "笔记本", "电脑",
+        "智能家居", "智能门锁", "智能灯", "扫地机", "空气净化器",
+        "机器人", "无人机", "VR", "AR", "眼镜",
+        "相机", "摄像机", "投影仪", "打印机",
+        "电吹风", "剃须刀", "电动牙刷", "美容仪",
+        "平衡车", "滑板车", "电动自行车", "头盔",
+        "游戏机", "手柄", "电竞椅",
+        "水杯", "保温杯", "咖啡机", "榨汁机",
+        "穿戴设备", "运动相机", "行车记录仪"
       ],
       "exclude": [
-        "UI设计", "APP设计", "网页设计", "包装设计", "海报设计", "品牌VI", "广告设计",
-        "建筑设计", "室内设计", "服装设计", "插画", "平面设计", "字体设计", "Logo设计",
-        "电商设计", "运营设计", "H5设计", "小程序设计", "后台设计", "数据可视化"
+        "UI设计", "APP设计", "网页设计", "网站设计",
+        "包装设计", "海报设计", "品牌VI", "VI设计",
+        "广告设计", "平面设计", "logo设计", "标志设计",
+        "建筑设计", "室内设计", "装修设计", "景观设计",
+        "服装设计", "珠宝设计", "首饰设计",
+        "插画", "漫画", "原画", "概念图",
+        "字体设计", "排版设计", "书籍设计",
+        "摄影", "后期", "修图", "合成"
       ]
     }
   },
   "behance": {
     "category_keywords": {
       "include": [
-        "phone", "tablet", "laptop", "headphone", "speaker", "smartwatch", "charger",
-        "cable", "power bank", "camera", "keyboard", "mouse", "monitor", "router",
-        "smart home", "robot", "drone", "AR", "VR", "smart speaker", "projector",
-        "game controller", "earbuds", "smart band", "tablet PC", "notebook",
-        "mechanical keyboard", "wireless mouse", "monitor stand", "smart lock",
-        "robot vacuum", "air purifier", "humidifier", "desk lamp", "socket",
-        "converter", "consumer electronics", "product design", "industrial design"
+        "headphone", "earphone", "earbuds", "speaker", "sound",
+        "phone", "smartphone", "mobile", "watch", "smartwatch", "wearable", "band",
+        "charger", "cable", "power bank", "battery",
+        "keyboard", "mouse", "monitor", "display", "tablet", "laptop", "computer", "PC",
+        "smart home", "lock", "lamp", "light", "vacuum", "purifier", "air",
+        "robot", "drone", "VR", "AR", "glasses", "headset",
+        "camera", "projector", "printer", "scanner",
+        "hair dryer", "shaver", "toothbrush", "beauty", "skincare",
+        "scooter", "bike", "helmet", "skateboard",
+        "game", "gaming", "controller", "console",
+        "cup", "bottle", "coffee", "juicer", "blender", "kitchen",
+        "fitness", "sport", "outdoor", "travel"
       ],
       "exclude": [
-        "UI design", "UX design", "app design", "web design", "packaging design",
-        "poster design", "branding", "advertising", "architecture", "interior design",
-        "fashion design", "illustration", "graphic design", "typography", "logo design",
-        "e-commerce", "marketing design", "H5", "dashboard", "data visualization"
+        "UI", "UX", "app design", "web design", "website",
+        "packaging", "poster", "branding", "logo", "identity",
+        "advertising", "graphic design", "illustration",
+        "architecture", "interior", "furniture",
+        "fashion", "jewelry", "accessories",
+        "photography", "art direction", "typography"
+      ]
+    }
+  },
+  "puxiang": {
+    "category_keywords": {
+      "include": [
+        "耳机", "音箱", "手机", "手表", "智能手表", "手环",
+        "充电器", "充电宝", "移动电源", "数据线",
+        "键盘", "鼠标", "显示器", "平板", "笔记本", "电脑",
+        "智能家居", "智能门锁", "智能灯", "扫地机", "空气净化器",
+        "机器人", "无人机", "VR", "AR", "眼镜",
+        "相机", "摄像机", "投影仪", "打印机",
+        "电吹风", "剃须刀", "电动牙刷", "美容仪",
+        "平衡车", "滑板车", "电动自行车", "头盔",
+        "游戏机", "手柄", "电竞椅",
+        "水杯", "保温杯", "咖啡机", "榨汁机",
+        "穿戴设备", "运动相机", "行车记录仪",
+        "医疗", "健康", "检测仪", "按摩仪",
+        "宠物", "喂食器", "饮水机"
+      ],
+      "exclude": [
+        "UI设计", "APP设计", "网页设计", "网站设计",
+        "包装设计", "海报设计", "品牌VI", "VI设计",
+        "广告设计", "平面设计", "logo设计", "标志设计",
+        "建筑设计", "室内设计", "装修设计", "景观设计",
+        "服装设计", "珠宝设计", "首饰设计",
+        "插画", "漫画", "原画", "概念图",
+        "字体设计", "排版设计", "书籍设计",
+        "摄影", "后期", "修图", "合成"
       ]
     }
   }

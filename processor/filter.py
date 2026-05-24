@@ -28,7 +28,7 @@ class CategoryFilter:
         Args:
             title: Project title
             description: Project description (optional)
-            source: 'zcool' or 'behance'
+            source: 'zcool', 'behance', or 'puxiang'
         
         Returns:
             True if project is consumer electronics
@@ -36,12 +36,13 @@ class CategoryFilter:
         text = f"{title} {description}".lower()
         
         # Get keywords for the source
-        if source == "zcool":
+        if source in self.keywords and 'category_keywords' in self.keywords[source]:
+            include_keywords = self.keywords.get(source, {}).get('category_keywords', {}).get('include', [])
+            exclude_keywords = self.keywords.get(source, {}).get('category_keywords', {}).get('exclude', [])
+        else:
+            # Fallback to zcool keywords if source not found
             include_keywords = self.keywords.get('zcool', {}).get('category_keywords', {}).get('include', [])
             exclude_keywords = self.keywords.get('zcool', {}).get('category_keywords', {}).get('exclude', [])
-        else:
-            include_keywords = self.keywords.get('behance', {}).get('category_keywords', {}).get('include', [])
-            exclude_keywords = self.keywords.get('behance', {}).get('category_keywords', {}).get('exclude', [])
         
         # Check exclude keywords first
         for keyword in exclude_keywords:
@@ -61,7 +62,7 @@ class CategoryFilter:
         
         Args:
             projects: List of project dictionaries
-            source: 'zcool' or 'behance'
+            source: 'zcool', 'behance', or 'puxiang'
         
         Returns:
             Filtered list of consumer electronics projects

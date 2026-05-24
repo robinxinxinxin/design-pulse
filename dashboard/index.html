@@ -23,6 +23,8 @@
             --accent-glow: rgba(108, 92, 231, 0.15);
             --zcool: #ff6b6b;
             --zcool-bg: rgba(255, 107, 107, 0.1);
+            --puxiang: #00b894;
+            --puxiang-bg: rgba(0, 184, 148, 0.1);
             --behance: #1769ff;
             --behance-bg: rgba(23, 105, 255, 0.1);
             --success: #00d68f;
@@ -172,6 +174,7 @@
 
         .stat-number.accent { color: var(--accent); }
         .stat-number.zcool { color: var(--zcool); }
+        .stat-number.puxiang { color: var(--puxiang); }
         .stat-number.behance { color: var(--behance); }
         .stat-number.company { color: var(--warning); }
 
@@ -320,6 +323,7 @@
         }
 
         .progress-step .source-tag.zcool { background: var(--zcool-bg); color: var(--zcool); }
+        .progress-step .source-tag.puxiang { background: var(--puxiang-bg); color: var(--puxiang); }
         .progress-step .source-tag.behance { background: var(--behance-bg); color: var(--behance); }
 
         .progress-count {
@@ -487,6 +491,7 @@
         }
 
         .badge.zcool { background: var(--zcool-bg); color: var(--zcool); }
+        .badge.puxiang { background: var(--puxiang-bg); color: var(--puxiang); }
         .badge.behance { background: var(--behance-bg); color: var(--behance); }
 
         /* === PAGINATION === */
@@ -662,12 +667,12 @@
                 <div class="stat-number zcool" id="zcool-count">—</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Behance</div>
-                <div class="stat-number behance" id="behance-count">—</div>
+                <div class="stat-label">普象</div>
+                <div class="stat-number puxiang" id="puxiang-count">—</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">设计公司</div>
-                <div class="stat-number company" id="company-count">—</div>
+                <div class="stat-label">Behance</div>
+                <div class="stat-number behance" id="behance-count">—</div>
             </div>
         </div>
 
@@ -680,6 +685,7 @@
             <select class="filter-select" id="source-filter">
                 <option value="">全部来源</option>
                 <option value="zcool">站酷</option>
+                <option value="puxiang">普象</option>
                 <option value="behance">Behance</option>
             </select>
             <select class="filter-select" id="type-filter">
@@ -791,9 +797,9 @@
                 const res = await fetch(`${API_BASE}/projects/stats?weeks=${weeks}`);
                 const data = await res.json();
                 document.getElementById('total-count').textContent = data.total_this_week;
-                document.getElementById('zcool-count').textContent = data.by_source.zcool;
-                document.getElementById('behance-count').textContent = data.by_source.behance;
-                document.getElementById('company-count').textContent = data.by_author_type.company;
+                document.getElementById('zcool-count').textContent = data.by_source.zcool || 0;
+                document.getElementById('puxiang-count').textContent = data.by_source.puxiang || 0;
+                document.getElementById('behance-count').textContent = data.by_source.behance || 0;
             } catch (e) { console.error('Stats error:', e); }
         }
 
@@ -868,7 +874,7 @@
                         <span class="card-author">${escapeHtml(project.author)}</span>
                         <div class="card-right">
                             ${dateStr ? `<span class="card-date">${dateStr}</span>` : ''}
-                            <span class="badge ${project.source}">${project.source === 'zcool' ? 'ZCOOL' : 'BE'}</span>
+                            <span class="badge ${project.source}">${project.source === 'zcool' ? 'ZCOOL' : project.source === 'puxiang' ? '普象' : 'BE'}</span>
                         </div>
                     </div>
                 </div>`;

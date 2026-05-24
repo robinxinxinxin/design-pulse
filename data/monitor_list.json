@@ -2,35 +2,291 @@
   "companies": [
     {
       "name": "佳简几何",
-      "profile_url": "https://www.behance.net/jianji",
+      "profile_url": "https://www.puxiang.com/xivodesign/gallery",
       "notes": "深圳市佳简几何工业设计有限公司，专注品牌定位与全案设计"
     },
     {
       "name": "设际邹设计",
-      "profile_url": "https://www.behance.net/shejizou",
+      "profile_url": "https://www.puxiang.com/u216832/gallery",
       "notes": "深圳市设际邹工业设计有限公司，聚焦消费电子、智能硬件"
     },
     {
-      "name": "白狐设计",
-      "profile_url": "https://www.behance.net/baihu",
-      "notes": "深圳市白狐工业设计有限公司，国家高新技术企业"
-    },
-    {
       "name": "后浪设计",
-      "profile_url": "https://www.behance.net/houlang",
-      "notes": "后浪设计"
+      "profile_url": "https://www.puxiang.com/houlangdesign/gallery",
+      "notes": "深圳市后浪工业设计有限公司"
     },
     {
       "name": "有度设计 dooo design",
       "profile_url": "https://www.puxiang.com/u4053531/gallery",
       "notes": "有度设计"
-    }
+    },
+    {
+      "name": "D MOOSTER",
+      "profile_url": "https://www.puxiang.com/dmooster/gallery",
+      "notes": "杭州大怪兽科技有限公司，潮牌风格，专注蓝牙耳机、3C产品，2024年产出百余款设计"
+    },
+    {
+      "name": "所思设计",
+      "profile_url": "https://www.puxiang.com/suosidesign/gallery",
+      "notes": "所思（深圳）设计有限公司，专注医疗器械、智能宠物、3C产品，TOP榜银奖获得者，代表作Hypershell行走外骨骼"
+    },
+    {
+      "name": "凸凹设计 TOALL",
+      "profile_url": "https://www.puxiang.com/toalldesign/gallery",
+      "notes": "杭州凸凹工业设计有限公司，专注智能化产品设计、家电、机器人，TOP榜银奖/铜奖获得者，代表作AI陪伴机器人、远程替身机器人"
+    },
+
   ],
   "individuals": [
     {
       "name": "Behance 产品设计精选",
       "profile_url": "https://www.behance.net/galleries/product-design",
       "notes": "Behance 产品设计画廊，发现全球优秀个人设计师"
+    },
+    {
+      "name": "厂长",
+      "profile_url": "https://www.puxiang.com/u100483/gallery",
+      "notes": "超级单体设计师，579粉丝，人气9.8万+，TOP榜铜奖(第170期)，专注智能灌溉、美容仪、手持分析仪等消费电子产品"
+    },
+    {
+      "name": "Vitaliy Tarasov",
+      "profile_url": "https://www.behance.net/VitaliyTarasov",
+      "notes": "工业设计师/艺术总监，塞浦路斯尼科西亚，Evapolar系列(evaPURE/evaWAVE/evaCHILL)，Yanko Design收录"
+    },
+    {
+      "name": "Kenji Abe",
+      "profile_url": "https://www.behance.net/kenjiabe",
+      "notes": "产品设计师，东京，代表作ECHO/LACUNA/APERIRE，涉足工业设计/家具/展览，个人网站kenjiabe.com"
+    },
+    {
+      "name": "Hyeonggyun Han",
+      "profile_url": "https://www.behance.net/hyeonggyunhan",
+      "notes": "工业设计师，韩国，代表作Hound/PLA/GeoShift，专注消费电子产品概念设计"
+    },
+    {
+      "name": "Rand Nassar",
+      "profile_url": "https://www.behance.net/rand_nassar",
+      "notes": "产品设计师，约旦，代表作MYLO盲文胰岛素笔/SCOPE远程医疗设备/DECIBEL噪音监测，专注医疗健康产品设计"
+    },
+    {
+      "name": "Sébastien Gobert",
+      "profile_url": "https://www.behance.net/sebastiengobert",
+      "notes": "创意总监，瑞士纳沙泰尔，Zenith Watches创意总监，前Bell & Ross手表设计师，专注高端手表工业设计"
+    },
+    {
+      "name": "HoHyeon Lim",
+      "profile_url": "https://www.behance.net/hohyunrim4b40",
+      "notes": "工业设计师，代表作EDGE CLOCK，Behance工业设计画廊精选"
+    },
+    {
+      "name": "TAEHYEONG KIM",
+      "profile_url": "https://www.behance.net/xogud010111",
+      "notes": "工业设计师，代表作elio，Behance工业设计画廊精选"
+    },
+    {
+      "name": "Ayush Singh Patel",
+      "profile_url": "https://www.behance.net/AyushSingh95",
+      "notes": "工业设计师，代表作Noise Junior - Champ 3，Behance工业设计画廊精选"
+    },
+    {
+      "name": "Siddharth Jindal",
+      "profile_url": "https://www.behance.net/siddharthjindal",
+      "notes": "工业设计师，代表作Brink，Behance工业设计画廊精选"
+    },
+    {
+      "name": "KAIRI EGUCHI",
+      "profile_url": "https://www.behance.net/kairieguchidesign",
+      "notes": "工业设计师，代表作Ā TYPE WALL，Behance工业设计画廊精选"
+    },
+    {
+      "name": "Andrew Perkins",
+      "profile_url": "https://www.behance.net/andrew_perkins",
+      "notes": "工业设计师，810好评，373关注者，代表作Synapse Chair/Marble & Metal Bar Accessories"
+    },
+    {
+      "name": "Joaquin Herlein",
+      "profile_url": "https://www.behance.net/Joaquinherlein",
+      "notes": "工业设计师，3733好评，1634关注者，代表作EXEC模块化手机壳/ION高端钛厨具概念"
+    },
+    {
+      "name": "Mick Belief",
+      "profile_url": "https://www.behance.net/mickbelief",
+      "notes": "工业设计师，2020好评，692关注者，代表作喷气动力ISR无人机/滴滤咖啡机"
+    },
+    {
+      "name": "Alfredo Marco Pradil",
+      "profile_url": "https://www.behance.net/pradil",
+      "notes": "字体/产品设计师，11.8万好评，1.5万关注者，代表作Alienware字体/Amper Sans"
+    },
+    {
+      "name": "Ridzert Ingenegeren",
+      "profile_url": "https://www.behance.net/ridzert",
+      "notes": "工业设计师，Behance工业设计搜索推荐"
+    },
+    {
+      "name": "RAPHAEL CRESPO",
+      "profile_url": "https://www.behance.net/raphaelcrespo",
+      "notes": "工业设计师，LinkedIn验证，Behance工业设计搜索推荐"
+    },
+    {
+      "name": "Neetica Pande",
+      "profile_url": "https://www.behance.net/neeticapande",
+      "notes": "产品设计师，Behance工业设计搜索推荐"
+    },
+    {
+      "name": "Jenil shah",
+      "profile_url": "https://www.behance.net/shahjenil36",
+      "notes": "工业设计师，14个工作已完成，Behance Pro会员"
+    },
+    {
+      "name": "Arthur Carvalho Vieira",
+      "profile_url": "https://www.behance.net/ArthurVieira",
+      "notes": "工业设计师，20个工作已完成，Behance Pro会员"
+    },
+    {
+      "name": "DHIRAJ CHOUDHARI",
+      "profile_url": "https://www.behance.net/dhirajchoudhari",
+      "notes": "工业设计师，LinkedIn验证，4个工作已完成，Behance Pro会员"
+    },
+    {
+      "name": "JunSeo Oh",
+      "profile_url": "https://www.behance.net/ohjunseo",
+      "notes": "工业设计师，Behance工业设计搜索推荐"
+    },
+    {
+      "name": "Mirko Romanelli",
+      "profile_url": "https://www.behance.net/mirkoromanelli",
+      "notes": "工业设计师，Behance Pro会员"
+    },
+    {
+      "name": "Enrico Secci",
+      "profile_url": "https://www.behance.net/enricosecci",
+      "notes": "工业设计师，Behance工业设计搜索推荐"
+    },
+    {
+      "name": "Igor Jankovic",
+      "profile_url": "https://www.behance.net/IgorJankovic",
+      "notes": "工业设计师，13个工作已完成，Behance Pro会员"
+    },
+    {
+      "name": "Mauro Manzo",
+      "profile_url": "https://www.behance.net/mauromanzo1",
+      "notes": "工业设计师，Behance Pro会员"
+    },
+    {
+      "name": "Tiago Leitao",
+      "profile_url": "https://www.behance.net/tiagoleitao",
+      "notes": "产品设计师，6806好评，5456关注者，7.2万项目查看，Behance特别推荐，115个工作已完成"
+    },
+    {
+      "name": "Rick Lundskow",
+      "profile_url": "https://www.behance.net/ricklundskow",
+      "notes": "工业设计师，6768好评，3819关注者，7.6万项目查看，Behance推荐"
+    },
+    {
+      "name": "Usman Mahmood",
+      "profile_url": "https://www.behance.net/usmanmahmood",
+      "notes": "产品设计师，3026好评，662关注者，3.9万项目查看，Behance推荐"
+    },
+    {
+      "name": "Mouvli V",
+      "profile_url": "https://www.behance.net/mouvli",
+      "notes": "3D产品动画师，4883好评，1724关注者，5.9万项目查看，专注产品CGI和动画"
+    },
+    {
+      "name": "Bernat Casasnovas Torres",
+      "profile_url": "https://www.behance.net/bernatcasasnovas",
+      "notes": "工业设计师，2.7万好评，1万关注者，33.9万项目查看，Behance推荐"
+    },
+    {
+      "name": "Ivan Ermakov",
+      "profile_url": "https://www.behance.net/ivanermakov",
+      "notes": "产品设计师，6.2万好评，4479关注者，70.8万项目查看，Behance推荐"
+    },
+    {
+      "name": "Thais Katsumi",
+      "profile_url": "https://www.behance.net/thaiskatsumi",
+      "notes": "3D设计师，3409好评，1161关注者，5.1万项目查看，Behance推荐"
+    },
+    {
+      "name": "Danil Repko",
+      "profile_url": "https://www.behance.net/danilrepko",
+      "notes": "家具设计师，1388好评，506关注者，1.5万项目查看，代表作ALMA Vanity Set"
+    },
+    {
+      "name": "Kenneth Perez",
+      "profile_url": "https://www.behance.net/kennethperez",
+      "notes": "家具设计师，1143好评，343关注者，9.7万项目查看，代表作Biedermeier Pool Table"
+    },
+    {
+      "name": "Patricia Castro de Oliveira",
+      "profile_url": "https://www.behance.net/patriciacastro",
+      "notes": "室内/家具设计师，6682好评，3489关注者，9.9万项目查看，Behance推荐"
+    },
+    {
+      "name": "Esraa Ashraf",
+      "profile_url": "https://www.behance.net/esraaashraf",
+      "notes": "室内设计师，737好评，468关注者，1万项目查看，Behance推荐"
+    },
+    {
+      "name": "Sahar Habibi",
+      "profile_url": "https://www.behance.net/saharhabibi",
+      "notes": "室内设计师，4651好评，1106关注者，3.4万项目查看，Behance推荐"
+    },
+    {
+      "name": "Alina Libetska",
+      "profile_url": "https://www.behance.net/alinalibetska",
+      "notes": "建筑可视化设计师，685好评，168关注者，1.1万项目查看，Behance推荐"
+    },
+    {
+      "name": "M N E",
+      "profile_url": "https://www.behance.net/mne",
+      "notes": "室内设计师，3476好评，1380关注者，5.6万项目查看，Behance推荐"
+    },
+    {
+      "name": "Vashantsev Nik",
+      "profile_url": "https://www.behance.net/vashantsevnik",
+      "notes": "室内设计师，2149好评，524关注者，3万项目查看，Behance推荐"
+    },
+    {
+      "name": "Ucha Tsibadze",
+      "profile_url": "https://www.behance.net/uchatsibadze",
+      "notes": "室内设计师，678好评，119关注者，1.3万项目查看，Behance推荐"
+    },
+    {
+      "name": "mariem fawzi",
+      "profile_url": "https://www.behance.net/mariemfawzi",
+      "notes": "室内设计师，255好评，75关注者，2613项目查看，Behance推荐"
+    },
+    {
+      "name": "Anna Krupkin",
+      "profile_url": "https://www.behance.net/annakrupkin",
+      "notes": "插画家，1900好评，163关注者，1.5万项目查看，Behance推荐"
+    },
+    {
+      "name": "Alexandru Negru",
+      "profile_url": "https://www.behance.net/alexandrunegru",
+      "notes": "3D产品可视化师，6096好评，804关注者，7.5万项目查看，Behance推荐"
+    },
+    {
+      "name": "Oleksandr Honcharuk",
+      "profile_url": "https://www.behance.net/oleksandrhoncharuk",
+      "notes": "3D动画师，6362好评，612关注者，5.3万项目查看，Behance推荐"
+    },
+    {
+      "name": "David Adebayo",
+      "profile_url": "https://www.behance.net/davidadebayo",
+      "notes": "产品设计师，1.4万好评，492关注者，16.3万项目查看，Behance推荐"
+    },
+    {
+      "name": "Uladzimir Hermanovich",
+      "profile_url": "https://www.behance.net/uladzimirhermanovich",
+      "notes": "3D产品动画师，3193好评，661关注者，Behance推荐"
+    },
+    {
+      "name": "Sachin Zakarde",
+      "profile_url": "https://www.behance.net/sachinzakarde",
+      "notes": "工业设计师，Behance工业设计搜索推荐"
     }
   ]
 }

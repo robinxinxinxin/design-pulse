@@ -22,13 +22,14 @@ from typing import List, Optional
 from db.models import get_session, Project, CollectionLog
 from crawler.zcool_crawler import crawl_zcool
 from crawler.behance_crawler import crawl_behance
+from crawler.puxiang_crawler import crawl_puxiang
 from processor.filter import CategoryFilter
 from processor.dedup import deduplicate_projects
 
 app = FastAPI(
     title="Design Monitor API",
-    description="API for monitoring design trends from ZCOOL and Behance",
-    version="1.1.0"
+    description="API for monitoring design trends from ZCOOL, Puxiang and Behance",
+    version="1.2.0"
 )
 
 # CORS middleware
@@ -61,6 +62,8 @@ def _run_crawl_source(source: str, task_id: str, headless: bool, progress_queue:
             projects = crawl_zcool(headless=headless)
         elif source == 'behance':
             projects = crawl_behance(headless=headless)
+        elif source == 'puxiang':
+            projects = crawl_puxiang(headless=headless)
         else:
             raise ValueError(f"Unknown source: {source}")
 
@@ -142,7 +145,7 @@ def _run_all_crawls(task_id: str, headless: bool):
     progress_queue = queue.Queue()
     crawl_tasks[task_id]["progress_queue"] = progress_queue
 
-    sources = ['zcool', 'behance']
+    sources = ['zcool', 'puxiang', 'behance']
     for source in sources:
         _run_crawl_source(source, task_id, headless, progress_queue)
 
@@ -180,7 +183,7 @@ def _run_single_crawl(source: str, task_id: str, headless: bool):
 
 @app.get("/api/projects")
 def get_projects(
-    source: Optional[str] = Query(None, description="Filter by source: zcool or behance"),
+    source: Optional[str] = Query(None, description="Filter by source: zcool, puxiang or behance"),
     author_type: Optional[str] = Query(None, description="Filter by author type: company or individual"),
     keyword: Optional[str] = Query(None, description="Search by title (fuzzy match)"),
     weeks: int = Query(1, ge=1, le=52, description="Number of weeks to look back (default 1 = this week)"),
@@ -251,6 +254,11 @@ def get_stats(weeks: int = Query(1, ge=1, le=52)):
             Project.published_at >= week_start
         ).count()
 
+        puxiang_count = session.query(Project).filter(
+            Project.source == 'puxiang',
+            Project.published_at >= week_start
+        ).count()
+
         behance_count = session.query(Project).filter(
             Project.source == 'behance',
             Project.published_at >= week_start
@@ -271,6 +279,7 @@ def get_stats(weeks: int = Query(1, ge=1, le=52)):
             "total_this_week": total_this_week,
             "by_source": {
                 "zcool": zcool_count,
+                "puxiang": puxiang_count,
                 "behance": behance_count
             },
             "by_author_type": {
@@ -414,6 +423,27 @@ def trigger_behance_crawl(headless: bool = True):
     return {"task_id": task_id, "status": "started"}
 
 
+@app.post("/api/crawl/puxiang")
+def trigger_puxiang_crawl(headless: bool = True):
+    """Manually trigger Puxiang crawl as async background task"""
+    task_id = str(uuid.uuid4())[:8]
+    crawl_tasks[task_id] = {
+        "status": "started",
+        "progress_queue": None,
+        "result": None,
+        "error": None
+    }
+
+    thread = threading.Thread(
+        target=_run_single_crawl,
+        args=('puxiang', task_id, headless),
+        daemon=True
+    )
+    thread.start()
+
+    return {"task_id": task_id, "status": "started"}
+
+
 @app.post("/api/crawl/all")
 def trigger_all_crawls(headless: bool = True):
     """Manually trigger all crawls as async background task"""
@@ -447,7 +477,7 @@ def root():
         return FileResponse(dashboard_path)
     return {
         "message": "Design Monitor API",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "docs": "/docs",
         "endpoints": [
             "/api/projects",
@@ -456,6 +486,7 @@ def root():
             "/api/status",
             "/api/crawl/progress",
             "/api/crawl/zcool",
+            "/api/crawl/puxiang",
             "/api/crawl/behance",
             "/api/crawl/all"
         ]

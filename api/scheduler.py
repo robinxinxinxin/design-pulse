@@ -13,6 +13,7 @@ from datetime import datetime
 
 from crawler.zcool_crawler import crawl_zcool
 from crawler.behance_crawler import crawl_behance
+from crawler.puxiang_crawler import crawl_puxiang
 from processor.dedup import deduplicate_projects
 from db.models import get_session, Project, CollectionLog
 
@@ -49,7 +50,7 @@ class CrawlScheduler:
             print("Scheduler stopped")
     
     def run_weekly_crawl(self):
-        """Run the weekly crawl for both sources"""
+        """Run the weekly crawl for all sources"""
         print(f"\n{'='*50}")
         print(f"Starting weekly crawl at {datetime.now()}")
         print(f"{'='*50}\n")
@@ -63,6 +64,16 @@ class CrawlScheduler:
         except Exception as e:
             print(f"ZCOOL crawl failed: {e}")
             self._log_error('zcool', str(e))
+        
+        # Puxiang
+        try:
+            print("\nCrawling Puxiang...")
+            puxiang_projects = crawl_puxiang(headless=True)
+            new_puxiang = self._save_projects(puxiang_projects, 'puxiang')
+            print(f"Puxiang: {len(puxiang_projects)} found, {new_puxiang} new added")
+        except Exception as e:
+            print(f"Puxiang crawl failed: {e}")
+            self._log_error('puxiang', str(e))
         
         # Behance
         try:
